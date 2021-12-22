@@ -1,36 +1,53 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <title>
+        @hasSection ('title')
+            @yield('title') – Neo Universe
+        @else
+            Neo Universe
+        @endif
+    </title>
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{-- Noindex remove on production --}}
+    <meta name="robots" content="none" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="yandex" content="none">
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+    {{-- Roboto Google fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,300;1,400&display=swap"
+        rel="stylesheet">
+    {{-- Material Icons --}}
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+    {{-- Owl Carousel --}}
+    <link rel="stylesheet" href="{{ asset('js/owl-carousel/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/owl-carousel/owl.theme.default.min.css') }}">
+    {{-- Styles --}}
+    <link rel="stylesheet" href="{{ asset('css/uncompressed/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/uncompressed/home.css') }}">
 
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+</head>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
-        </div>
-    </body>
+<body>
+    @include('layouts.header')
+    @yield('main')
+    @include('layouts.footer')
+
+    {{-- JQuery --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    {{-- Owl Carousel --}}
+    <script src="{{ asset('js/owl-carousel/owl.carousel.min.js') }}"></script>
+    {{-- Scripts --}}
+    <script src="{{ asset('js/uncompressed/main.js') }}"></script>
+</body>
+
 </html>
