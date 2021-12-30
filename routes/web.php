@@ -20,4 +20,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/search', [MainController::class, 'store'])->name('search');
 });
 
-require __DIR__.'/auth.php';
+require_once __DIR__.'/auth.php';

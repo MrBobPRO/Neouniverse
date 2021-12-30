@@ -37,6 +37,9 @@
                 padding: 30px;
                 box-shadow: 0 0 10px #0000001c;
             }
+            .logo {
+                margin-bottom: 16px;
+            }
             .form-group {
                 display: flex;
                 flex-direction: column;
@@ -74,7 +77,7 @@
         <form class="form" method="POST" action="{{ route('login') }}">
             @csrf
 
-            <img src="{{ asset('img/main/logo.svg') }}">
+            <img class="logo" src="{{ asset('img/main/logo.svg') }}">
 
             <!-- Email Address -->
             <div class="form-group">
