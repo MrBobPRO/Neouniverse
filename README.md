@@ -1,4 +1,4 @@
-<p align="center">Made by [Laravel Framework 8.76.2](https://laravel.com/)</p> 
+<h4 align="center">Made by <a href="https://laravel.com/">Laravel Framework 8.76.2</a></h4> 
 
 ### Application configs
 - Timezone => Asia/Dushanbe
@@ -12,10 +12,10 @@
 - [Owl Carousel](https://owlcarousel2.github.io/OwlCarousel2/)
 - [Google Maps](https://developers.google.com/maps/documentation/javascript/overview)
 
-## Installed PHP libraries
+### Installed PHP libraries
 - [Laravel Breeze](https://laravel.com/docs/8.x/starter-kits)
 
-## Localization
+### Localization
 1. Created Middleware "Language", that will change applications locale into sessions stored locale on app boot
 2. "Language" Middleware added into App/Http/KerneL
 3. Created LanguageController that will change session`s locale variable into selected language
