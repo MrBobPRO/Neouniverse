@@ -32,9 +32,7 @@
     {{-- Styles --}}
     <link rel="stylesheet" href="{{ asset('css/uncompressed/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/uncompressed/home.css') }}">
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ asset('css/uncompressed/about.css') }}">
 </head>
 
 <body>

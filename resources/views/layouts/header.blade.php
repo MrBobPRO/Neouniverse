@@ -18,7 +18,7 @@
         <nav class="navbar">
             <ul class="navbar__list">
                 <li class="navbar__item">
-                    <a class="navbar__link" href="#">О нас</a>
+                    <a class="navbar__link" href="{{ route('about_us') }}">О нас</a>
                 </li>
 
                 <li class="navbar__item">

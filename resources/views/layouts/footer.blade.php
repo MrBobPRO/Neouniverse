@@ -16,16 +16,18 @@
         </div>
     </div>
 
-    <div class="footer__news">
-        <div class="footer__news-inner main-container">
-            <div class="title_with_explore_more footer__news-title">
-                <h1 class="main-title">Новости</h1>
-                <a href="#">Все новости <span class="material-icons-outlined">arrow_forward</span></a>
+    @if($route == 'home')
+        <div class="footer__news">
+            <div class="footer__news-inner main-container">
+                <div class="title_with_explore_more footer__news-title">
+                    <h1 class="main-title">Новости</h1>
+                    <a href="#">Все новости <span class="material-icons-outlined">arrow_forward</span></a>
+                </div>
+        
+                <x-news-list :news="$news"/>
             </div>
-    
-            {{-- <x-news-list :news="$news"/> --}}
         </div>
-    </section>
+    @endif
 
     <div class="footer-map">
         <div class="main-container footer__contacts">
@@ -52,7 +54,9 @@
     </div>
 
     <div class="main-container footer-bottom">
-        <img class="footer__logo" src="{{ asset('img/main/logo-black.svg') }}" alt="Neo universe logo">
-        <p class="copyright">© 2012-2021 NEO UNIVERSE ВСЕ ПРАВА ЗАЩИЩЕНЫ</p>
+        <a href="{{ route('home') }}">
+            <img class="footer__logo" src="{{ asset('img/main/logo-black.svg') }}" alt="Neo universe logo">
+        </a>
+        <p class="copyright">© 2012-{{date('Y')}} NEO UNIVERSE. Все права защищены</p>
     </div>
 </footer>

@@ -2,10 +2,13 @@
 .home__about-inner {
     flex-direction: column;
     padding-top: 80px;
-    padding-bottom: 80px;
+    padding-bottom: 70px;
+}
+.home__about-title {
+    margin-bottom: 40px;
 }
 .about-cards {
-    margin: 40px 0;
+    margin-bottom: 40px;
     display: flex;
     gap: 20px;
 }
@@ -46,11 +49,9 @@
 
 
 /* Home products start */
-.home__products {
-    padding-bottom: 85px;
-}
 .home__products-inner {
     flex-direction: column;
+    padding-bottom: 85px;
 }
 .home__products-title {
     margin-bottom: 40px;

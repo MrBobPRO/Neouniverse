@@ -6,9 +6,9 @@
 
     <section class="home__about">
         <div class="home__about-inner main-container">
-            <div class="title_with_explore_more">
-                <h1 class="main-title">О нас</h1>
-                <a href="#">Подробнее о NEOUNIVERSE <span class="material-icons-outlined">arrow_forward</span></a>
+            <div class="home__about-title title_with_explore_more">
+                <h1 class="main-title">{{ __('О нас') }}</h1>
+                <a href="#">{{ __('Подробнее о NEOUNIVERSE') }} <span class="material-icons-outlined">arrow_forward</span></a>
             </div>
 
             <div class="about-cards">
@@ -42,7 +42,8 @@
             </div>
 
             <p class="home__about-text">
-                Neo Universe - это международная фармацевтическая компания, которая производит и продвигает рецептурные и безрецептурные лекарства, основанная в 2001 году, с целью внедрения инноваций в медицине. Мы специлиазируемся в таких областях как: кардиология, терапия, педиатрия, гинекология, дерматология, эндокринология, неврология, урология, пульмонология, гематология, микробиология, иммунология, аллергология, альгология и травматология.
+                @php $txt = App\Models\Option::where('tag', 'about-us__text')->first(); @endphp
+                {{ $txt[$locale . '_value']}}
             </p>
 
         </div>

@@ -1,0 +1,8 @@
+.about__text-inner {
+    flex-direction: column;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.about__title {
+    margin-bottom: 40px;
+}
