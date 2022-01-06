@@ -29,7 +29,6 @@ if (main_carousel) {
         });
     }
 }
-
 // ----------------Main carousel end----------------
 
 
@@ -101,3 +100,41 @@ if (map) {
     }
 }
 // --------------Google Maps end----------------
+
+
+// --------------Accordion start----------------
+document.querySelectorAll('.accordion__button').forEach(item => {
+    item.addEventListener('click', event => {
+        let button = event.target;
+        let parent = button.closest('.accordion__item');
+        let accordion = button.closest('.accordion');
+        let collapse = parent.getElementsByClassName('accordion__collapse')[0];
+        
+        //close any other active collapses
+        let active_collapses = accordion.getElementsByClassName('accordion__collapse--show');
+        for (i = 0; i < active_collapses.length; i++) {
+            if (active_collapses[i] !== collapse) {
+                //remove active class from collapse button
+                let active_collapse_parent = active_collapses[i].closest('.accordion__item');
+                let active_button = active_collapse_parent.getElementsByClassName('accordion__button')[0];
+                active_button.classList.remove('accordion__button--active');
+                //remove show class from collapse
+                active_collapses[i].style.height = null;
+                active_collapses[i].classList.remove('accordion__collapse--show');
+            }
+        }
+        
+        //hide collapse body if its active
+        if (collapse.clientHeight) {
+            collapse.style.height = 0;
+            collapse.classList.remove('accordion__collapse--show');
+            button.classList.remove('accordion__button--active');
+        //else show collapse body if its hidden
+        } else {
+            collapse.style.height = collapse.scrollHeight + "px";
+            collapse.classList.add('accordion__collapse--show');
+            button.classList.add('accordion__button--active');
+        }
+    });
+});
+// --------------Accordion end----------------

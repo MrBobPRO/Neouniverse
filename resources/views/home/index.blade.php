@@ -42,8 +42,8 @@
             </div>
 
             <p class="home__about-text">
-                @php $txt = App\Models\Option::where('tag', 'about-us__text')->first(); @endphp
-                {{ $txt[$locale . '_value']}}
+                @php $aboutUs = App\Models\Option::where('tag', 'about-us')->first(); @endphp
+                {{ $aboutUs[$localedValue] }}
             </p>
 
         </div>
@@ -52,8 +52,8 @@
     <section class="home__products">
         <div class="home__products-inner main-container">
             <div class="title_with_explore_more home__products-title">
-                <h1 class="main-title">Продукты</h1>
-                <a href="#">Все продукты <span class="material-icons-outlined">arrow_forward</span></a>
+                <h1 class="main-title">{{ __('Продукты') }}</h1>
+                <a href="#">{{ __('Все продукты') }} <span class="material-icons-outlined">arrow_forward</span></a>
             </div>
     
             <x-products-carousel :products="$products"/>

@@ -2,13 +2,13 @@
 
     <div class="contact-us">
         <div class="main-container contact-us__inner" style="background-image: url({{ asset('img/main/contact-us-pattern.svg') }})">
-            <h1 class="main-title contact-us__title">Свяжитесь с нами!</h1>
+            <h1 class="main-title contact-us__title">{{ __('Свяжитесь с нами') }}!</h1>
 
             <form action="#" class="contact-us__form">
-                <input type="text" class="contact-us__input" placeholder="Почта">
-                <input type="text" class="contact-us__input contact-us__input--grow" placeholder="Как мы можем Вам помочь?">
+                <input type="text" class="contact-us__input" placeholder="{{ __('Почта') }}">
+                <input type="text" class="contact-us__input contact-us__input--grow" placeholder="{{ __('Как мы можем Вам помочь')}}?">
                 <div class="button_style_more contact-us__submit">
-                    <button type="submit">Отправить
+                    <button type="submit">{{ __('Отправить') }}
                         <span class="material-icons-outlined">arrow_forward</span>
                     </button>
                 </div>
@@ -20,8 +20,8 @@
         <div class="footer__news">
             <div class="footer__news-inner main-container">
                 <div class="title_with_explore_more footer__news-title">
-                    <h1 class="main-title">Новости</h1>
-                    <a href="#">Все новости <span class="material-icons-outlined">arrow_forward</span></a>
+                    <h1 class="main-title">{{ __('Новости') }}</h1>
+                    <a href="#">{{ __('Все новости') }} <span class="material-icons-outlined">arrow_forward</span></a>
                 </div>
         
                 <x-news-list :news="$news"/>
@@ -34,18 +34,31 @@
             <div class="footer__contacts-inner">
                 <div class="footer__contacts-block">
                     <div class="footer__socials">
-                        <a href="#" class="footer__socials-link">
+                        @php $facebook = App\Models\Option::where('tag', 'facebook')->first(); @endphp
+                        <a href="{{ $facebook[$locale . '_value']}}" class="footer__socials-link" target="_blank">
                             @include('svgs.facebook')
                         </a>
 
-                        <a href="#" class="footer__socials-link">
+                        @php $instagram = App\Models\Option::where('tag', 'instagram')->first(); @endphp
+                        <a href="{{ $instagram[$locale . '_value']}}" class="footer__socials-link" target="_blank">
                             @include('svgs.instagram')
                         </a>
                     </div>
 
-                    <p class="footer__contacts-address">«Neo Universe» Unit 18, 53 Norman Road, Greenwich Centre Business Park, London, England, SE10 9QF</p>
-                    <a href="#" class="footer__contacts-link">info@neouniverse.co.uk</a>
-                    <a href="#" class="footer__contacts-link">+992 918 55 64 64</a>
+                    @php $address = App\Models\Option::where('tag', 'address')->first(); @endphp
+                    <p class="footer__contacts-address">
+                        {{ $address[$locale . '_value']}}
+                    </p>
+
+                    @php $email = App\Models\Option::where('tag', 'email')->first(); @endphp
+                    <a href="mailto:{{ $email[$locale . '_value'] }}" class="footer__contacts-link">
+                        {{ $email[$locale . '_value']}}
+                    </a>
+
+                    @php $phone = App\Models\Option::where('tag', 'phone')->first(); @endphp
+                    <a href="tel:{{ str_replace(' ', '', $phone[$locale . '_value']) }}" class="footer__contacts-link">
+                        {{ $phone[$locale . '_value']}}
+                    </a>
                 </div>
             </div>
         </div>
@@ -57,6 +70,6 @@
         <a href="{{ route('home') }}">
             <img class="footer__logo" src="{{ asset('img/main/logo-black.svg') }}" alt="Neo universe logo">
         </a>
-        <p class="copyright">© 2012-{{date('Y')}} NEO UNIVERSE. Все права защищены</p>
+        <p class="copyright">© 2012-{{date('Y')}} {{ __('NEO UNIVERSE. Все права защищены') }}</p>
     </div>
 </footer>

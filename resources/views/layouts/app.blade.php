@@ -45,7 +45,7 @@
     {{-- Owl Carousel --}}
     <script src="{{ asset('js/owl-carousel/owl.carousel.min.js') }}"></script>
     {{-- Google Maps --}}
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAneCOkP0fjY3gOXV9DYFTdA59yWXDvNLw&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAneCOkP0fjY3gOXV9DYFTdA59yWXDvNLw&language={{ $locale }}&callback=initMap" async defer></script>
     {{-- Scripts --}}
     <script src="{{ asset('js/uncompressed/main.js') }}"></script>
 </body>

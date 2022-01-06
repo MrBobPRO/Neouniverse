@@ -6,7 +6,7 @@
             <div class="products-carousel__item products-card">
                 <a href="#" class="products-card__image-container">
                     <img class="products-card__image" src="{{ asset('img/products/thumbs/' . $product->image) }}" alt="{{ $product->name }}">
-                    <span class="products-card__prescription {{ $product->prescription ? 'products-card__prescription--rx' : 'products-card__prescription--otc' }}">{{ $product->prescription ? 'RX' : 'OTC' }}</span>
+                    <span class="products-card__prescription {{ $product->prescription ? 'products-card__prescription--rx' : 'products-card__prescription--otc' }}">{{ $product->prescription ? __('RX') : __('OTC') }}</span>
                 </a>
                 <h2 class="products-card__title">{{ $product->name }}</h2>
                 <div class="products-card__categories">

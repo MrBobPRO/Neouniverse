@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,10 @@ use App\Http\Controllers\MainController;
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', [MainController::class, 'home'])->name('home');
     Route::get('/about-us', [MainController::class, 'about_us'])->name('about_us');
+    
+    //products
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
     //search
     Route::get('/search', [MainController::class, 'store'])->name('search');
 });

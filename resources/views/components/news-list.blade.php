@@ -9,7 +9,7 @@
 
             <h2 class="news-card__title">{{ $new->title }}</h2>
             <div class="news-card__body">{!! $new->body !!}</div>
-            <a class="news-card__link" href="#">Подробнее</a>
+            <a class="news-card__link" href="#">{{ __('Подробнее') }}</a>
         </div>
     @endforeach
 </div>

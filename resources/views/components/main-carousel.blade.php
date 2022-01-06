@@ -9,7 +9,7 @@
                     <h1 class="main-carousel__title">Юнифен</h1>
                     <p class="main-carousel__description">Юнифен оказывает анальгезирующее, жаропонижающее и противовоспалительное действие.</p>
                     <div class="button_style_more main-carousel__button">
-                        <a href="#">Подробнее
+                        <a href="#">{{ __('Подробнее') }}
                             <span class="material-icons-outlined">arrow_forward</span>
                         </a>
                     </div>
@@ -28,7 +28,7 @@
                     <h1 class="main-carousel__title">Юнифен</h1>
                     <p class="main-carousel__description">Юнифен оказывает анальгезирующее, жаропонижающее и противовоспалительное действие.</p>
                     <div class="button_style_more main-carousel__button">
-                        <a href="#">Подробнее
+                        <a href="#">{{ __('Подробнее') }}
                             <span class="material-icons-outlined">arrow_forward</span>
                         </a>
                     </div>
@@ -47,7 +47,7 @@
                     <h1 class="main-carousel__title">Юнифен</h1>
                     <p class="main-carousel__description">Юнифен оказывает анальгезирующее, жаропонижающее и противовоспалительное действие.</p>
                     <div class="button_style_more main-carousel__button">
-                        <a href="#">Подробнее
+                        <a href="#">{{ __('Подробнее') }}
                             <span class="material-icons-outlined">arrow_forward</span>
                         </a>
                     </div>
@@ -66,7 +66,7 @@
                     <h1 class="main-carousel__title">Юнифен</h1>
                     <p class="main-carousel__description">Юнифен оказывает анальгезирующее, жаропонижающее и противовоспалительное действие.</p>
                     <div class="button_style_more main-carousel__button">
-                        <a href="#">Подробнее
+                        <a href="#">{{ __('Подробнее') }}
                             <span class="material-icons-outlined">arrow_forward</span>
                         </a>
                     </div>

@@ -1,6 +1,6 @@
-<h4 align="center">Made by <a href="https://laravel.com/">Laravel Framework 8.76.2</a></h4> 
+<h4 align="center">Made by <a href="https://laravel.com/" target="_blank">Laravel Framework 8.76.2</a></h4> 
 
-### Application configs
+### Application configurations
 - Timezone => Asia/Dushanbe
 - Default Locale => ru
 - Main Font => Roboto

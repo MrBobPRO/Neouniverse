@@ -18,22 +18,22 @@
         <nav class="navbar">
             <ul class="navbar__list">
                 <li class="navbar__item">
-                    <a class="navbar__link" href="{{ route('about_us') }}">О нас</a>
+                    <a class="navbar__link @if($route == 'about_us') navbar__link--active @endif" href="{{ route('about_us') }}">{{ __('О нас') }}</a>
                 </li>
 
                 <li class="navbar__item">
-                    <a class="navbar__link" href="#">Продукты</a>
+                    <a class="navbar__link" href="#" @if($route == 'products.index') navbar__link--active @endif>{{ __('Продукты') }}</a>
                 </li>
 
                 <li class="navbar__item">
-                    <a class="navbar__link" href="#">Новости</a>
+                    <a class="navbar__link" href="#" @if($route == 'news.index') navbar__link--active @endif>{{ __('Новости') }}</a>
                 </li>
             </ul>
         </nav>  {{-- Navbar end --}}
 
         {{-- Contact start --}}
-        <button class="header__contact-us">
-            <span class="material-icons-outlined search__icon">portrait</span> Связатсья с нами
+        <button class="header__contact-us @if($route == 'home') header__contact-us--shadowed @endif">
+            <span class="material-icons-outlined search__icon">portrait</span> {{ __('Связатсья с нами') }}
         </button>  {{-- Contact end --}}
 
     </div>  {{-- Main container end --}}

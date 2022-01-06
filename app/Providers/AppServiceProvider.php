@@ -31,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         Paginator::useBootstrap();
 
-        View::share('locale', App::currentLocale());
+        View::share(['locale' => App::currentLocale(), 'localedValue' => App::currentLocale() . '_value']);
 
         View::composer(['layouts.app'], function ($view) {
             $view->with('route', Route::currentRouteName());

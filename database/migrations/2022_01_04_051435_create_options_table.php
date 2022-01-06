@@ -18,8 +18,8 @@ class CreateOptionsTable extends Migration
             $table->string('key'); // used to store more readable block name (used in dashboard)
             $table->text('ru_value');
             $table->text('en_value');
-            $table->text('ge_value');
-            $table->string('tag'); // identificator of element (used by developer)
+            $table->text('ka_value');
+            $table->string('tag')->unique(); // identificator of element (used by developer)
             $table->string('group')->nullable();  // some options may have same groups
             $table->boolean('wysiwyg')->default(false); // simditor/textarea switcher
             $table->timestamps();
