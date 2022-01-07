@@ -27,7 +27,7 @@
                         <div class="accordion__collapse">
                             <div class="accordion__collapse-body">
                                 @php $health = App\Models\Option::where('tag', 'wealth-health')->first(); @endphp
-                                {{ $health[$localedValue]}}
+                                {{ $health[$localedValue] }}
                             </div>
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                         <div class="accordion__collapse">
                             <div class="accordion__collapse-body">
                                 @php $efficiency = App\Models\Option::where('tag', 'wealth-efficiency')->first(); @endphp
-                                {{ $efficiency[$localedValue]}}
+                                {{ $efficiency[$localedValue] }}
                             </div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                         <div class="accordion__collapse">
                             <div class="accordion__collapse-body">
                                 @php $confidence = App\Models\Option::where('tag', 'wealth-confidence')->first(); @endphp
-                                {{ $confidence[$localedValue]}}
+                                {{ $confidence[$localedValue] }}
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         <div class="accordion__collapse">
                             <div class="accordion__collapse-body">
                                 @php $duty = App\Models\Option::where('tag', 'wealth-duty')->first(); @endphp
-                                {{ $duty[$localedValue]}}
+                                {{ $duty[$localedValue] }}
                             </div>
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                         <div class="accordion__collapse">
                             <div class="accordion__collapse-body">
                                 @php $strategy = App\Models\Option::where('tag', 'base-strategy')->first(); @endphp
-                                {{ $strategy[$localedValue]}}
+                                {{ $strategy[$localedValue] }}
                             </div>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                         <div class="accordion__collapse">
                             <div class="accordion__collapse-body">
                                 @php $mission = App\Models\Option::where('tag', 'base-mission')->first(); @endphp
-                                {{ $mission[$localedValue]}}
+                                {{ $mission[$localedValue] }}
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                         <div class="accordion__collapse">
                             <div class="accordion__collapse-body">
                                 @php $aim = App\Models\Option::where('tag', 'base-aim')->first(); @endphp
-                                {{ $aim[$localedValue]}}
+                                {{ $aim[$localedValue] }}
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <div class="accordion__collapse">
                             <div class="accordion__collapse-body">
                                 @php $wealth = App\Models\Option::where('tag', 'base-wealth')->first(); @endphp
-                                {{ $wealth[$localedValue]}}
+                                {{ $wealth[$localedValue] }}
                             </div>
                         </div>
                     </div>

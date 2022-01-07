@@ -52,8 +52,9 @@ button {
 
 /* Titles start */
 .main-title {
-    font-weight: bold;
+    margin-bottom: 40px;
     font-size: 24px;
+    font-weight: bold;
 }
 .title_with_explore_more {
     display: flex;
@@ -123,17 +124,16 @@ button {
     margin: 0;
     padding: 0;
     list-style: none;
-    gap: 30px;
 }
 .navbar__link {
     color: #1D1D1D;
     font-size: 16px;
+    padding: 10px 24px;
+    border-radius: 100px;
 }
 .navbar__link--active {
-    padding: 8px 32px;
     color: white;
     background: var(--main-color);
-    border-radius: 100px;
 }
 .header__contact-us {
     display: flex;
@@ -161,6 +161,10 @@ button {
     border: 1px solid #D0D8DE;
     border-radius: 100px;
 }
+.search__input::placeholder {
+    font-size: 16px;
+    color: #D0D8DE;
+}
 .search__button {
     position: absolute;
     top: 7px;
@@ -185,9 +189,6 @@ button {
     background-size: contain;
     background-position: right;
     background-repeat: no-repeat;
-}
-.contact-us__title {
-    margin-bottom: 40px;
 }
 .contact-us__form {
     display: flex;

@@ -37,18 +37,47 @@ class ProductSeeder extends Seeder
 
         for($i = 0; $i < count($name); $i++) {
             $product = new Product();
-            $product->name = $name[$i];
+            $product->ru_name = $name[$i];
+            $product->en_name = $name[$i];
+            $product->ka_name = $name[$i];
+
             $product->url = Helper::transliterateIntoLatin($name[$i]);
-            $product->form = '5 МЛ';
-            $product->image = Helper::transliterateIntoLatin($name[$i]) . '.png';
             $product->prescription = rand(0,1);
-            $product->instruction = Helper::transliterateIntoLatin($name[$i]) . '.pdf';
-            $product->obtain_link = 'https://salomat.tj/';
-            $product->description = $description;
-            $product->composition = $composition;
-            $product->testimony = $testimony;
-            $product->use = $use;
+
+            $product->ru_image = Helper::transliterateIntoLatin($name[$i]) . '.png';
+            $product->en_image = Helper::transliterateIntoLatin($name[$i]) . '.png';
+            $product->ka_image = Helper::transliterateIntoLatin($name[$i]) . '.png';
+
+            $product->ru_instruction = Helper::transliterateIntoLatin($name[$i]) . '.pdf';
+            $product->en_instruction = Helper::transliterateIntoLatin($name[$i]) . '.pdf';
+            $product->ka_instruction = Helper::transliterateIntoLatin($name[$i]) . '.pdf';
+
+            $product->ru_obtain_link = 'https://salomat.tj/';
+            $product->en_obtain_link = 'https://salomat.tj/';
+            $product->ka_obtain_link = 'https://salomat.tj/';
+
+            $product->ru_amount = '5 МЛ';
+            $product->ka_amount = '5 МЛ';
+            $product->en_amount = '5 МЛ';
+
+            $product->ru_description = $description;
+            $product->en_description = $description;
+            $product->ka_description = $description;
+
+            $product->ru_composition = $composition;
+            $product->en_composition = $composition;
+            $product->ka_composition = $composition;
+
+            $product->ru_testimony = $testimony;
+            $product->ka_testimony = $testimony;
+            $product->en_testimony = $testimony;
+
+            $product->ru_use = $use;
+            $product->en_use = $use;
+            $product->ka_use = $use;
             $product->save();
+
+            $product->categories()->attach(rand(1,8));
         }
     }
 }

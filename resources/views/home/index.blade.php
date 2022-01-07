@@ -56,7 +56,7 @@
                 <a href="#">{{ __('Все продукты') }} <span class="material-icons-outlined">arrow_forward</span></a>
             </div>
     
-            <x-products-carousel :products="$products"/>
+            <x-products.carousel :products="$products"/>
         </div>
     </section>
 

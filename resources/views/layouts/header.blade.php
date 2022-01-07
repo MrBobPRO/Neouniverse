@@ -8,7 +8,7 @@
 
         {{-- Search start --}}
         <form class="search" action="{{ route('search') }}" method="GET">
-            <input type="text" class="search__input">
+            <input type="text" class="search__input" placeholder="{{ __('Поиск') }}">
             <button type="button" class="search__button">
                 <span class="material-icons-outlined search__icon">search</span>
             </button>
@@ -22,11 +22,11 @@
                 </li>
 
                 <li class="navbar__item">
-                    <a class="navbar__link" href="#" @if($route == 'products.index') navbar__link--active @endif>{{ __('Продукты') }}</a>
+                    <a class="navbar__link @if($route == 'products.index') navbar__link--active @endif" href="{{ route('products.index') }}">{{ __('Продукты') }}</a>
                 </li>
 
                 <li class="navbar__item">
-                    <a class="navbar__link" href="#" @if($route == 'news.index') navbar__link--active @endif>{{ __('Новости') }}</a>
+                    <a class="navbar__link  @if($route == 'news.index') navbar__link--active @endif" href="{{ route('about_us') }}">{{ __('Новости') }}</a>
                 </li>
             </ul>
         </nav>  {{-- Navbar end --}}

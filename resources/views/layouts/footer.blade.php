@@ -24,7 +24,7 @@
                     <a href="#">{{ __('Все новости') }} <span class="material-icons-outlined">arrow_forward</span></a>
                 </div>
         
-                <x-news-list :news="$news"/>
+                <x-news.list :news="$news"/>
             </div>
         </div>
     @endif
@@ -35,29 +35,29 @@
                 <div class="footer__contacts-block">
                     <div class="footer__socials">
                         @php $facebook = App\Models\Option::where('tag', 'facebook')->first(); @endphp
-                        <a href="{{ $facebook[$locale . '_value']}}" class="footer__socials-link" target="_blank">
+                        <a href="{{ $facebook[$localedValue] }}" class="footer__socials-link" target="_blank">
                             @include('svgs.facebook')
                         </a>
 
                         @php $instagram = App\Models\Option::where('tag', 'instagram')->first(); @endphp
-                        <a href="{{ $instagram[$locale . '_value']}}" class="footer__socials-link" target="_blank">
+                        <a href="{{ $instagram[$localedValue] }}" class="footer__socials-link" target="_blank">
                             @include('svgs.instagram')
                         </a>
                     </div>
 
                     @php $address = App\Models\Option::where('tag', 'address')->first(); @endphp
                     <p class="footer__contacts-address">
-                        {{ $address[$locale . '_value']}}
+                        {{ $address[$localedValue] }}
                     </p>
 
                     @php $email = App\Models\Option::where('tag', 'email')->first(); @endphp
-                    <a href="mailto:{{ $email[$locale . '_value'] }}" class="footer__contacts-link">
-                        {{ $email[$locale . '_value']}}
+                    <a href="mailto:{{ $email[$localedValue] }}" class="footer__contacts-link">
+                        {{ $email[$localedValue] }}
                     </a>
 
                     @php $phone = App\Models\Option::where('tag', 'phone')->first(); @endphp
-                    <a href="tel:{{ str_replace(' ', '', $phone[$locale . '_value']) }}" class="footer__contacts-link">
-                        {{ $phone[$locale . '_value']}}
+                    <a href="tel:{{ str_replace(' ', '', $phone[$localedValue]) }}" class="footer__contacts-link">
+                        {{ $phone[$localedValue] }}
                     </a>
                 </div>
             </div>

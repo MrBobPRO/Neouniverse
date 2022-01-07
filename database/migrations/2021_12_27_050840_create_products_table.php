@@ -15,17 +15,46 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+
+            $table->string('ru_name');
+            $table->string('en_name');
+            $table->string('ka_name');
+
             $table->string('url');
-            $table->string('form');
-            $table->string('image');
-            $table->boolean('prescription');
-            $table->string('instruction');
-            $table->string('obtain_link');
-            $table->text('description');
-            $table->text('composition');
-            $table->text('testimony');
-            $table->text('use');
+            $table->boolean('prescription'); //RX or OTC
+            
+            $table->string('ru_image');
+            $table->string('en_image');
+            $table->string('ka_image');
+
+            $table->string('ru_instruction');
+            $table->string('en_instruction');
+            $table->string('ka_instruction');
+
+            $table->string('ru_obtain_link');
+            $table->string('en_obtain_link');
+            $table->string('ka_obtain_link');
+
+            $table->text('ru_amount'); //10 tablets, 5 ml etc
+            $table->text('en_amount');
+            $table->text('ka_amount');
+
+            $table->text('ru_description');
+            $table->text('en_description');
+            $table->text('ka_description');
+
+            $table->text('ru_composition');
+            $table->text('en_composition');
+            $table->text('ka_composition');
+
+            $table->text('ru_testimony');
+            $table->text('en_testimony');
+            $table->text('ka_testimony');
+
+            $table->text('ru_use');
+            $table->text('en_use');
+            $table->text('ka_use');
+
             $table->timestamps();
         });
     }
