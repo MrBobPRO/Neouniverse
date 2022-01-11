@@ -15,7 +15,7 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        $name = ['Амброксол', 'М2-Гино', 'Гоназа Ампулы', 'Аргумел Коби'];
+        $name = ['Амброксол', 'М2-Гино', 'Гоназа Ампулы', 'Аргумел Коби', 'Бекладейм', 'Би-Септин-Нео', 'Аргумел Шампунь', 'Пандемон'];
         $description = '<p>Амброксол (активный метаболит бромгексина) является муколитическим средством, который улучшает реологические свойства мокроты, уменьшает ее вязкость и адгезивные свойства, что способствует ее выведению из дыхательных путей.</p>';
         $composition = '<p>Каждые 5 мл содержат: амброксола гидрохлорид BP 15 мг.</p>';
         $testimony = '<p>Амброксол применяется при заболеваниях дыхательных путей с выделением вязкой мокроты, и при затруднении отделения мокроты</p>:
@@ -43,6 +43,7 @@ class ProductSeeder extends Seeder
 
             $product->url = Helper::transliterateIntoLatin($name[$i]);
             $product->prescription = rand(0,1);
+            $product->form_id = rand(1,8);
 
             $product->ru_image = Helper::transliterateIntoLatin($name[$i]) . '.png';
             $product->en_image = Helper::transliterateIntoLatin($name[$i]) . '.png';
@@ -78,6 +79,7 @@ class ProductSeeder extends Seeder
             $product->save();
 
             $product->categories()->attach(rand(1,8));
+            $product->symptoms()->attach(rand(1,8));
         }
     }
 }

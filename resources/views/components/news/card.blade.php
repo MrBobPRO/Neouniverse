@@ -1,6 +1,6 @@
 @props(['class' => '', 'new'])
 
-<div class="news-card">
+<div class="{{ $class }} news-card">
     <a class="news-card__img-container" href="#">
         <img class="news-card__image" src="{{ asset('img/news/thumbs/' . $new->image) }}" alt="{{ $new->title }}">
     </a>

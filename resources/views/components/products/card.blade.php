@@ -1,7 +1,7 @@
 @props(['class' => '', 'product'])
 
 <div class="{{$class}} products-card">
-    <a href="#" class="products-card__image-container">
+    <a href="{{ route('products.single', $product->url) }}" class="products-card__image-container">
         <img class="products-card__image" src="{{ asset('img/products/thumbs/' . $product[$locale . '_image']) }}" alt="{{ $product[$locale . '_name'] }}">
         <span class="products-card__prescription {{ $product->prescription ? 'products-card__prescription--rx' : 'products-card__prescription--otc' }}">{{ $product->prescription ? __('RX') : __('OTC') }}</span>
     </a>
@@ -10,7 +10,7 @@
 
     <div class="products-card__categories">
         @foreach ($product->categories as $category)
-            <a href="#">
+            <a class="{{ $product->prescription ? 'products-card__categories--rx' : 'products-card__categories--otc' }}" href="#">
                 {{ $category[$locale . '_name']; }}
             </a>
         @endforeach

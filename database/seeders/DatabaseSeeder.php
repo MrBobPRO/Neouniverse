@@ -31,5 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(NewsSeeder::class);
         $this->call(OptionSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(SymptomSeeder::class);
+        $this->call(FormSeeder::class);
     }
 }

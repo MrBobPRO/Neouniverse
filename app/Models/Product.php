@@ -14,4 +14,14 @@ class Product extends Model
         return $this->belongsToMany(ProductsCategory::class, 'category_product', 'product_id', 'category_id');
     }
 
+    public function symptoms()
+    {
+        return $this->belongsToMany(Symptom::class);
+    }
+
+    public function form()
+    {
+        return $this->belongsTo(Form::class);
+    }
+
 }

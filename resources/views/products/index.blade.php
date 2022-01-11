@@ -28,10 +28,15 @@
 
     <section class="all-products">
         <div class="all-products__inner main-container">
-            <h1 class="all-products__title main-title">{{ __('О нашей продукции') }} <span>92 продукта</span></h1>
+            <h1 class="all-products__title main-title">{{ __('Все продукты') }} <span>{{ $productsCount }} {{ __('продукта') }}</span></h1>
+
+            @include('products.filter')
+            <div class="products-list-container" id="products_list_container">
+                <x-products.list :products="$products" />
+            </div>
         </div>
+
     </section>
 
 </main>
-
 @endsection

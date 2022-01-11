@@ -23,7 +23,7 @@
 
     "Мы ценим" : "We appreciate",
     "Здоровье" : "Health",
-    "Эффективность в работе " : "Efficiency at work",
+    "Эффективность в работе" : "Efficiency at work",
     "Уверенность" : "Confidence",
     "Обязанность" : "Responsibility",
 
@@ -37,6 +37,14 @@
 
     "О нашей продукции": "About our products",
     "Внимание": "Warning",
+    "продукта": "products",
+    "Все": "All",
+    "По названию или веществу" : "By name or composition",
+    "например" : "for example",
+    "Амброксол, Аргумел Коби, М2-Гино" : "Ambroxol, Argumel Kobi, M2-Gino",
+    "Направления" : "Category",
+    "Симптомы" : "Symptoms",
+    "Форма выпуска" : "Form",
 
     
     "NEO UNIVERSE. Все права защищены" : "NEO UNIVERSE. All rights reserved"

@@ -1,3 +1,12 @@
+// ----------------Ajax Request setup start----------------
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+})
+// ----------------Ajax Request setup end----------------
+
+
 // ----------------Main carousel start----------------
 let main_carousel = $("#main_carousel");
 if (main_carousel) {
@@ -41,7 +50,7 @@ if (products_carousel) {
         autoplay: false,
         nav: false,
         dots: false,
-        items: 4,
+        items: 4
     });
 
     // Owl carousel navigations
@@ -70,7 +79,7 @@ if (map) {
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: {
-                lat:38.57949484167983, 
+                lat: 38.57949484167983,
                 lng: 68.73690763576408
             },
             zoom: 14,
@@ -109,27 +118,26 @@ document.querySelectorAll('.accordion__button').forEach(item => {
         let parent = button.closest('.accordion__item');
         let accordion = button.closest('.accordion');
         let collapse = parent.getElementsByClassName('accordion__collapse')[0];
-        
-        //close any other active collapses
+
+        // close any other active collapses
         let active_collapses = accordion.getElementsByClassName('accordion__collapse--show');
-        for (i = 0; i < active_collapses.length; i++) {
-            if (active_collapses[i] !== collapse) {
-                //remove active class from collapse button
+        for (i = 0; i < active_collapses.length; i ++) {
+            if (active_collapses[i] !== collapse) { // remove active class from collapse button
                 let active_collapse_parent = active_collapses[i].closest('.accordion__item');
                 let active_button = active_collapse_parent.getElementsByClassName('accordion__button')[0];
                 active_button.classList.remove('accordion__button--active');
-                //remove show class from collapse
+                // remove show class from collapse
                 active_collapses[i].style.height = null;
                 active_collapses[i].classList.remove('accordion__collapse--show');
             }
         }
-        
-        //hide collapse body if its active
+
+        // hide collapse body if its active
         if (collapse.clientHeight) {
             collapse.style.height = 0;
             collapse.classList.remove('accordion__collapse--show');
             button.classList.remove('accordion__button--active');
-        //else show collapse body if its hidden
+            // else show collapse body if its hidden
         } else {
             collapse.style.height = collapse.scrollHeight + "px";
             collapse.classList.add('accordion__collapse--show');
@@ -138,3 +146,65 @@ document.querySelectorAll('.accordion__button').forEach(item => {
     });
 });
 // --------------Accordion end----------------
+
+
+//---------------- Products filter select start----------------
+$('.products__filter-select').selectric({
+    onChange: function (element) {
+        $(element).change();
+        filter_products();
+    },
+    maxHeight: 300,
+    keySearchTimeout: 500,
+    arrowButtonMarkup: '<button class="selectric-button" type="button"><span class="material-icons-outlined">chevron_right</span></button>',
+    disableOnMobile: true,
+    nativeOnMobile: true,
+    openOnFocus: true,
+    openOnHover: false,
+    hoverIntentTimeout: 500,
+    expandToItemText: false,
+    responsive: false,
+    forceRenderAbove: false,
+    forceRenderBelow: false,
+    stopPropagation: true
+});
+//---------------- Products filter select end----------------
+
+
+//---------------- Products filter radiobuttons & input start----------------
+$(document).ready(function() {
+    $('input[type=radio][name="prescription"]').change(function() {
+        filter_products();
+    });
+
+    $('#products_filter_search').on('input', function () {
+        this.setAttribute('value', this.value);
+        filter_products();;
+    });
+});
+//---------------- Products filter radiobuttons & input end----------------
+let product_filter_form = document.getElementById('product_filter_form');
+let products_list_container = document.getElementById('products_list_container');
+
+function filter_products() {
+    let data = new FormData(product_filter_form);
+
+    $.ajax({
+        type: 'POST',
+        enctype: 'multipart/form-data',
+        url: '/products/filter',
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        //update inner HTML of products list on success
+        success: function (response) {
+            products_list_container.innerHTML = response;
+            console.log(response);
+        },
+        error: function () {
+            console.log('Ajax products filer error !');
+        }
+    });
+}

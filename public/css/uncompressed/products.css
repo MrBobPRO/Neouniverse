@@ -8,6 +8,7 @@
 }
 .all-products__inner {
     flex-direction: column;
+    padding-bottom: 80px;
 }
 .all-products__title {
     display: flex;
@@ -16,6 +17,55 @@
 }
 .all-products__title span {
     color: var(--secondary-color);
-    font-weight: 300;
     font-size: 16px;
+    font-weight: 300;
 }
+
+/* Filter start */
+.products-filter__top {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+.prescription-filter {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    padding: 5px 10px;
+    border: 2px solid #D0D8DE;
+    border-radius: 100px;
+}
+.prescription-filter input[type="radio"] {
+    display: none;
+}
+.prescription-filter label {
+    display: inline-block;
+    padding: 8px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    border-radius: 100px;
+    transition: 0.3s;
+}
+.prescription-filter input[type="radio"]:checked+label {
+    color: white;
+    background-color: var(--main-color);
+}
+.products-filter__bottom {
+    display: flex;
+    gap: 30px;
+}
+.products-filter__bottom-item {
+    width: calc(33.3% - 20px);
+}
+/* Filter end */
+
+/* Products list start */
+.products-list {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+.products-list .products-card {
+    width: calc(25% - 22.5px);
+}
+/* Products list end */

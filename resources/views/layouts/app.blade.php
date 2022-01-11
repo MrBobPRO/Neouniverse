@@ -29,6 +29,8 @@
     {{-- Owl Carousel --}}
     <link rel="stylesheet" href="{{ asset('js/owl-carousel/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('js/owl-carousel/owl.theme.default.min.css') }}">
+    {{-- Selectric --}}
+    <link rel="stylesheet" href="{{ asset('js/selectric/selectric.css') }}">
     {{-- Styles --}}
     <link rel="stylesheet" href="{{ asset('css/uncompressed/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/uncompressed/home.css') }}">
@@ -45,6 +47,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     {{-- Owl Carousel --}}
     <script src="{{ asset('js/owl-carousel/owl.carousel.min.js') }}"></script>
+    {{-- Selectric plugin --}}
+    <script src="{{ asset('js/selectric/selectric.min.js') }}"></script>
     {{-- Google Maps --}}
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAneCOkP0fjY3gOXV9DYFTdA59yWXDvNLw&language={{ $locale }}&callback=initMap" async defer></script>
     {{-- Scripts --}}
