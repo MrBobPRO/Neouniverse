@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     Route::get('/products/{url}', [ProductController::class, 'single'])->name('products.single');
 
-    Route::post('/products/filter', [ProductController::class, 'filter'])->name('products.filter');
+    Route::post('/products/ajax_get', [ProductController::class, 'ajax_get'])->name('products.ajax_get');
 
     //search
     Route::get('/search', [MainController::class, 'store'])->name('search');

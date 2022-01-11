@@ -8,12 +8,16 @@ use App\Models\ProductsCategory;
 use App\Models\Symptom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use stdClass;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::latest()->paginate(12);
+        // filtering products because request may contain searching && filtering && orderring
+        $products = $this->filter($request);
+        $products->withPath(route('products.index'));
+
         $productsCount = Product::all()->count();
 
         $locale = App::currentLocale();
@@ -21,7 +25,7 @@ class ProductController extends Controller
         $symptoms = Symptom::orderBy($locale . '_name', 'asc')->get();
         $forms = Form::orderBy($locale . '_name', 'asc')->get();
 
-        return view('products.index', compact('products', 'productsCount', 'categories', 'symptoms', 'forms'));
+        return view('products.index', compact('products', 'productsCount', 'categories', 'symptoms', 'forms', 'request'));
     }
 
     public function single($url)
@@ -31,16 +35,26 @@ class ProductController extends Controller
         return view('products.single', compact('product'));
     }
 
-    public function filter(Request $request)
+    public function ajax_get(Request $request)
+    {
+        $products = $this->filter($request);
+        $products->withPath(route('products.index'));
+
+        return view('components.products.list', compact('products'));
+    }
+
+    private function filter(Request $request)
     {
         /**
-         * return filtered & ordered & paginated products list 
+         * Used for filtering products in products.index route and while filteing products by ajax
+         * return filtered && ordered && paginated products list 
+         * @param \Illuminate\Http\Request $request
+         * @return Illuminate\Database\Eloquent\Builder
          */
-
         $locale = App::currentLocale();
         $products = Product::query();
         
-        if($request->prescription != 'all') {
+        if($request->prescription != 'all' && $request->prescription != '') {
             $products = $products->where('prescription', $request->prescription);
         }
 
@@ -74,8 +88,10 @@ class ProductController extends Controller
 
         $products = $products->orderBy($locale . '_name', 'asc')
                     ->select('id', $locale . '_name', $locale . '_description', $locale . '_image', 'prescription', 'url')
-                    ->paginate(12);
+                    ->paginate(12)
+                    ->appends($request->except(['page','_token']))
+                    ->fragment('all_products');
 
-        return view('components.products.list', compact('products'));
+        return $products;
     }
 }

@@ -653,9 +653,15 @@ button {
     order: -1;
 }
 .page-link {
-    display: flex;
-    padding: 5px;
     color: black;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.page-link.active {
+    border: 1px solid #1D1D1D;
 }
 .page-link.disabled {
     color: #D0D8DE;

@@ -192,7 +192,7 @@ function filter_products() {
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/products/filter',
+        url: '/products/ajax_get',
         data: data,
         processData: false,
         contentType: false,
@@ -201,7 +201,6 @@ function filter_products() {
         //update inner HTML of products list on success
         success: function (response) {
             products_list_container.innerHTML = response;
-            console.log(response);
         },
         error: function () {
             console.log('Ajax products filer error !');

@@ -26,7 +26,7 @@
         </div>
     </section> {{-- Products text end --}}
 
-    <section class="all-products">
+    <section class="all-products" id="all_products">
         <div class="all-products__inner main-container">
             <h1 class="all-products__title main-title">{{ __('Все продукты') }} <span>{{ $productsCount }} {{ __('продукта') }}</span></h1>
 
