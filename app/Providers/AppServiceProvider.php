@@ -29,7 +29,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        View::share(['locale' => App::currentLocale(), 'localedValue' => App::currentLocale() . '_value']);
+        View::composer('*', function ($view) {
+            $view->with('locale', App::currentLocale() )
+                ->with('localedValue', App::currentLocale() . '_value' );
+        }); 
 
         View::composer(['layouts.app'], function ($view) {
             $view->with('route', Route::currentRouteName());

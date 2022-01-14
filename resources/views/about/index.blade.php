@@ -116,7 +116,7 @@
 
     <section class="slogan">
         <div class="slogan__inner main-container">
-            <a href="#" class="slogan__text">{{ __('Здоровье – новые возможности') }}</a>
+            <a href="{{ route('products.index') }}" class="slogan__text">{{ __('Здоровье – новые возможности') }}</a>
         </div>
     </section>
 

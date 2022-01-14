@@ -1,6 +1,6 @@
-@props(['products'])
+@props(['products', 'class' => ''])
 
-<div class="products-carousel-container">
+<div class="products-carousel-container {{ $class }}">
     <div class="owl-carousel products-carousel" id="products_carousel">
         @foreach ($products as $product)
             <x-products.card class="products-carousel__item" :product="$product" />

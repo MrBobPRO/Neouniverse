@@ -30,9 +30,15 @@ class ProductController extends Controller
 
     public function single($url)
     {
-        $product = Product::where('url', $url)->first()->get();
+        $product = Product::where('url', $url)->first();
+        $product_categories = $product->categories()->pluck('id')->toArray();
 
-        return view('products.single', compact('product'));
+        $similar_products = Product::whereHas('categories', function($q) use ($product_categories) {
+            $q->whereIn('id', $product_categories); })
+            ->where('id', '!=', $product->id)
+            ->get();
+
+        return view('products.single', compact('product', 'similar_products'));
     }
 
     public function ajax_get(Request $request)
@@ -93,5 +99,14 @@ class ProductController extends Controller
                     ->fragment('all_products');
 
         return $products;
+    }
+
+    public function download_instructions(Request $request)
+    {
+        $product = Product::find($request->id);
+        $locale = App::currentLocale();
+        $instruction = public_path('instructions/' . $locale . '/' . $product[$locale . '_instruction']);
+
+        return response()->download($instruction, $product[$locale . '_instruction']);
     }
 }

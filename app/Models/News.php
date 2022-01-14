@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     use HasFactory;
+
+    public function categories()
+    {
+        return $this->belongsToMany(NewsCategory::class, 'category_news', 'news_id', 'category_id');
+    }
 }

@@ -1,6 +1,6 @@
 <footer class="footer">
 
-    <div class="contact-us">
+    <div class="contact-us" id="contact_us">
         <div class="main-container contact-us__inner" style="background-image: url({{ asset('img/main/contact-us-pattern.svg') }})">
             <h1 class="main-title contact-us__title">{{ __('Свяжитесь с нами') }}!</h1>
 
@@ -21,7 +21,7 @@
             <div class="footer__news-inner main-container">
                 <div class="title_with_explore_more footer__news-title">
                     <h1 class="main-title">{{ __('Новости') }}</h1>
-                    <a href="#">{{ __('Все новости') }} <span class="material-icons-outlined">arrow_forward</span></a>
+                    <a href="{{ route('news.index') }}">{{ __('Все новости') }} <span class="material-icons-outlined">arrow_forward</span></a>
                 </div>
         
                 <x-news.list :news="$news"/>

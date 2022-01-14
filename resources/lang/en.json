@@ -1,4 +1,5 @@
 {
+    "Главная" : "Home",
     "О нас" : "About us",
     "Продукты" : "Products",
     "Новости" : "News",
@@ -46,6 +47,23 @@
     "Симптомы" : "Symptoms",
     "Форма выпуска" : "Form",
 
+    "Скачать" : "Download",
+    "инструкцию" : "instruction",
+    "Приобрести" : "Purchase",
+    "препарат" : "a drug",
+    "Состав" : "Composition",
+    "Показания к применению" : "Indications for use",
+    "Способ применения" : "Mode of application",
+    "Похожие продукты" : "Similar products",
+
+    "статей" : "articles", 
+    "Категория" : "Categories", 
+    "По ключевым словам" : "By keywords", 
+    "Нанотехнологии, Эпидемиология, Полезные советы" : "Nanotechnology, Epidemiology, Tips and Tricks",
+    "Похожие новости" : "Similar news",
+
+    "По вашему запросу ничего не найдено" : "No results were found for your search",
+    "Пожалуйста, попробуйте новый поиск" : "Please, try a new search",
     
     "NEO UNIVERSE. Все права защищены" : "NEO UNIVERSE. All rights reserved"
 }

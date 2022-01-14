@@ -9,7 +9,7 @@
             <div class="about-products">
                 <h1 class="about-products__title main-title">{{ __('О нашей продукции') }}</h1>
     
-                <div class=about-products__text">
+                <div class="about-products__text">
                     @php $aboutProducts = App\Models\Option::where('tag', 'about-products')->first(); @endphp
                     {{ $aboutProducts[$localedValue] }}
                 </div>

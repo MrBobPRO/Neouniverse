@@ -7,11 +7,13 @@
         </a>  {{-- Logo end --}}
 
         {{-- Search start --}}
-        <form class="search" action="{{ route('search') }}" method="GET">
-            <input type="text" class="search__input" placeholder="{{ __('Поиск') }}">
+        <form class="search header__search-form" action="{{ route('search') }}" method="GET">
+            <input type="text" class="search__input header__search-input" placeholder="{{ __('Поиск') }}" id="header_search_input">
             <button type="button" class="search__button">
                 <span class="material-icons-outlined search__icon">search</span>
             </button>
+
+            <div class="search__result" id="header_search_result"></div>
         </form>  {{-- Search end --}}
 
         {{-- Navbar start --}}
@@ -22,19 +24,42 @@
                 </li>
 
                 <li class="navbar__item">
-                    <a class="navbar__link @if($route == 'products.index') navbar__link--active @endif" href="{{ route('products.index') }}">{{ __('Продукты') }}</a>
+                    <a class="navbar__link @if($route == 'products.index' || $route == 'products.single') navbar__link--active @endif" href="{{ route('products.index') }}">{{ __('Продукты') }}</a>
                 </li>
 
                 <li class="navbar__item">
-                    <a class="navbar__link  @if($route == 'news.index') navbar__link--active @endif" href="{{ route('about_us') }}">{{ __('Новости') }}</a>
+                    <a class="navbar__link  @if($route == 'news.index' || $route == 'news.single') navbar__link--active @endif" href="{{ route('news.index') }}">{{ __('Новости') }}</a>
                 </li>
             </ul>
         </nav>  {{-- Navbar end --}}
 
         {{-- Contact start --}}
-        <button class="header__contact-us @if($route == 'home') header__contact-us--shadowed @endif">
+        <a href="#contact_us" class="header__contact-us @if($route == 'home') header__contact-us--shadowed @endif">
             <span class="material-icons-outlined search__icon">portrait</span> {{ __('Связатсья с нами') }}
-        </button>  {{-- Contact end --}}
+        </a>  {{-- Contact end --}}
+
+        <div class="dropdown language-dropdown">
+            <button class="dropdown__button">{{ $locale }} <span class="material-icons-outlined dropdown__button-icon">expand_more</span></button>
+            <div class="dropdown__content">
+                <form class="dropdown__item" action="{{ route('switch_locale') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="locale" value="ru">
+                    <button class="language-button"><img src="{{ asset('img/main/ru.png') }}"> RU</button>
+                </form>
+
+                <form class="dropdown__item" action="{{ route('switch_locale') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="locale" value="en">
+                    <button class="language-button"><img src="{{ asset('img/main/en.png') }}"> EN</button>
+                </form>
+
+                <form class="dropdown__item" action="{{ route('switch_locale') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="locale" value="ka">
+                    <button class="language-button"><img src="{{ asset('img/main/ka.png') }}"> KA</button>
+                </form>
+            </div>
+        </div>
 
     </div>  {{-- Main container end --}}
 </header>
