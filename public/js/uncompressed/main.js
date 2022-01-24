@@ -195,7 +195,7 @@ function filter_products() {
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/products/ajax_get',
+        url: '/products/ajax-get',
         data: data,
         processData: false,
         contentType: false,
@@ -256,7 +256,7 @@ function filter_news() {
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: '/news/ajax_get',
+        url: '/news/ajax-get',
         data: data,
         processData: false,
         contentType: false,

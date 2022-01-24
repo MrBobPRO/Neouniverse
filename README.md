@@ -11,6 +11,8 @@
 - [JQuery 3.6.0](https://jquery.com/)
 - [Owl Carousel](https://owlcarousel2.github.io/OwlCarousel2/)
 - [Google Maps](https://developers.google.com/maps/documentation/javascript/overview)
+- [Selectric](https://www.jqueryscript.net/form/Minimal-jQuery-Html-Select-Replacement-Plugin-Selectric.html)
+- [Selectize](https://selectize.dev/)
 
 ### Installed PHP libraries
 - [Laravel Breeze](https://laravel.com/docs/8.x/starter-kits)

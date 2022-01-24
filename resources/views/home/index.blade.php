@@ -8,7 +8,7 @@
         <div class="home__about-inner main-container">
             <div class="home__about-title title_with_explore_more">
                 <h1 class="main-title">{{ __('О нас') }}</h1>
-                <a href="{{ route('about_us') }}">{{ __('Подробнее о NEOUNIVERSE') }} <span class="material-icons-outlined">arrow_forward</span></a>
+                <a href="{{ route('aboutUs') }}">{{ __('Подробнее о NEOUNIVERSE') }} <span class="material-icons-outlined">arrow_forward</span></a>
             </div>
 
             <div class="about-cards">

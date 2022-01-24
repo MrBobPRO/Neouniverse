@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
                 ->with('localedValue', App::currentLocale() . '_value' );
         }); 
 
-        View::composer(['layouts.app'], function ($view) {
+        View::composer(['layouts.app', 'dashboard.layouts.app'], function ($view) {
             $view->with('route', Route::currentRouteName());
         });
     }

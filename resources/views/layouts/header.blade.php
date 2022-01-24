@@ -20,7 +20,7 @@
         <nav class="navbar">
             <ul class="navbar__list">
                 <li class="navbar__item">
-                    <a class="navbar__link @if($route == 'about_us') navbar__link--active @endif" href="{{ route('about_us') }}">{{ __('О нас') }}</a>
+                    <a class="navbar__link @if($route == 'aboutUs') navbar__link--active @endif" href="{{ route('aboutUs') }}">{{ __('О нас') }}</a>
                 </li>
 
                 <li class="navbar__item">
@@ -39,24 +39,24 @@
         </a>  {{-- Contact end --}}
 
         <div class="dropdown language-dropdown">
-            <button class="dropdown__button">{{ $locale }} <span class="material-icons-outlined dropdown__button-icon">expand_more</span></button>
+            <button class="dropdown__button">{{ $locale == 'ka' ? 'GE' : $locale }} <span class="material-icons-outlined dropdown__button-icon">expand_more</span></button>
             <div class="dropdown__content">
-                <form class="dropdown__item" action="{{ route('switch_locale') }}" method="POST">
+                <form class="dropdown__item" action="{{ route('switchLocale') }}" method="POST">
                     @csrf
                     <input type="hidden" name="locale" value="ru">
                     <button class="language-button"><img src="{{ asset('img/main/ru.png') }}"> RU</button>
                 </form>
 
-                <form class="dropdown__item" action="{{ route('switch_locale') }}" method="POST">
+                <form class="dropdown__item" action="{{ route('switchLocale') }}" method="POST">
                     @csrf
                     <input type="hidden" name="locale" value="en">
                     <button class="language-button"><img src="{{ asset('img/main/en.png') }}"> EN</button>
                 </form>
 
-                <form class="dropdown__item" action="{{ route('switch_locale') }}" method="POST">
+                <form class="dropdown__item" action="{{ route('switchLocale') }}" method="POST">
                     @csrf
                     <input type="hidden" name="locale" value="ka">
-                    <button class="language-button"><img src="{{ asset('img/main/ka.png') }}"> KA</button>
+                    <button class="language-button"><img src="{{ asset('img/main/ka.png') }}"> GE</button>
                 </form>
             </div>
         </div>

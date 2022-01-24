@@ -18,7 +18,7 @@ class MainController extends Controller
         return view('home.index', compact('products', 'news'));
     }
 
-    public function about_us()
+    public function aboutUs()
     {
         return view('about.index');
     }
@@ -60,7 +60,7 @@ class MainController extends Controller
         ];
     }
 
-    public function switch_locale(Request $request)
+    public function switchLocale(Request $request)
     {
         session(['appLocale' => $request->locale]);
 

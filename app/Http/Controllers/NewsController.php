@@ -38,7 +38,7 @@ class NewsController extends Controller
         return view('news.single', compact('new', 'similar_news'));
     }
 
-    public function ajax_get(Request $request)
+    public function ajaxGet(Request $request)
     {
         $news = $this->filter($request);
         $news->withPath(route('news.index'));

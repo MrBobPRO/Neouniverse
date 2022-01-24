@@ -827,6 +827,7 @@ button {
 }
 .language-dropdown .dropdown__button {
     text-transform: uppercase;
+    border: none;
 }
 .dropdown__button:focus {
     background-color: #f1f1f1;

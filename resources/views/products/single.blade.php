@@ -58,7 +58,7 @@
 
                 {{-- Actions start --}}
                 <div class="product-content__actions">
-                    <form action="{{ route('products.download_instructions') }}" method="POST">
+                    <form action="{{ route('products.downloadInstructions') }}" method="POST">
                         @csrf
                         <input type="hidden" value="{{ $product->id }}" name="id">
 
