@@ -16,7 +16,19 @@
             @break
 
             @case('dashboard.products.single')
-                Продукты / {{$product->ru_title}}
+                Продукты / Редактировать / {{$product->ru_name}}
+            @break
+
+            @case('dashboard.news.index')
+                Новости ({{$itemsCount}})
+            @break
+
+            @case('dashboard.news.create')
+                Новости / Добавить новость
+            @break
+
+            @case('dashboard.news.single')
+                Новости / Редактировать / {{$news->ru_name}}
             @break
 
         @endswitch
@@ -37,19 +49,11 @@
                 <button data-bs-toggle="modal" data-bs-target="#remove_items_modal">Удалить отмеченные</button>
             @break
 
-            @case('dashboard.projects.index')
-                <span>Элементов : {{$items_count}}</span>
-                <a href="{{route('dashboard.projects.groups.index')}}">Группы</a>
-                <a href="{{route('dashboard.projects.create')}}">Добавить проект</a>
-                <button class="button--undecorated" type="button" data-bs-toggle="modal"
-                    data-bs-target="#remove_multiple_modal">Удалить отмеченные</button>
-            @break
-
-            @case('dashboard.projects.groups.index')
-                <span class="header__actions-span">Элементов : {{$items_count}}</span>
-                <a class="header__actions-link" href="{{route('dashboard.projects.groups.create')}}">Добавить группу</a>
-                <button class="header__actions-button" type="button" data-bs-toggle="modal"
-                    data-bs-target="#remove_multiple_modal">Удалить отмеченные</button>
+            @case('dashboard.news.index')
+                <a href="{{route('dashboard.news.create')}}">Добавить</a>
+                <a href="{{route('dashboard.news.create')}}">Категории</a>
+                <button onclick="select_all_checkboxes()">Отметить все</button>
+                <button data-bs-toggle="modal" data-bs-target="#remove_items_modal">Удалить отмеченные</button>
             @break
 
         @endswitch

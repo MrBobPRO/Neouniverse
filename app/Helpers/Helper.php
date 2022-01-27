@@ -7,13 +7,19 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\File;
+use Image;
 
 class Helper {
 
+    const DEFAULT_LANGUAGE = 'ru_';
+    const SECONDARY_LANGUAGES = ['en_', 'ka_'];
+
+    const INSTRUCTIONS_PATH = '/instructions';
+    const PRODUCTS_PATH = '/img/products';
+    const PRODUCTS_THUMBS_PATH = '/img/thumbs/products';
+
     /**
      * Return transliterated lowercased string from russian or tajik into latin
-     * 
      *
      * @param string $string
      * @return string
@@ -45,18 +51,18 @@ class Helper {
 
 
     /**
-     * Fill multiple language fileds of item (on create)
-     * RU values used as default value for EN/KA values
-     *
+     * Filling fields for the Default language are required! 
+     * Unfilled fields of Secondary languages will automatically be filled with data from the Default language!
+     * 
+     * @param \Http\Request $request
      * @param \Eloquent\Model $item
      * @param array $fields
-     * @param \Http\Request $request
-     * @return null
+     * @return void
      */
-    public static function fillMultiLanguageFields($item, $fields, $request)
+    public static function fillMultiLanguageFields($request, $item, $fields)
     {
-         $defaultLanguage = 'ru_';
-         $secondaryLanguages = ['en_', 'ka_'];
+         $defaultLanguage = Helper::DEFAULT_LANGUAGE;
+         $secondaryLanguages = Helper::SECONDARY_LANGUAGES;
 
          foreach($fields as $field) {
              $item[$defaultLanguage . $field] = $request[$defaultLanguage . $field];
@@ -66,55 +72,115 @@ class Helper {
              }
          }
 
-         return null;
+         return;
+    }
+
+    /**
+     * Filling fields for the Default language are required! 
+     * Unfilled fields of Secondary languages will automatically be filled with data from the Default language!
+     * 
+     * Used to upload products instruction on create & edit
+     * Default language instructions used as default value for secondary language instructions
+     *
+     * @param \Http\Request $request
+     * @param \Eloquent\Model\Product $product
+     * @return void
+     */
+    public static function uploadProductInstructions($request, $product)
+    {
+        $defaultLanguage = Helper::DEFAULT_LANGUAGE;
+        $secondaryLanguages = Helper::SECONDARY_LANGUAGES;
+
+        $instructionsPath = public_path(Helper::INSTRUCTIONS_PATH);
+        $transliteratedName = $product->url;
+
+        // store default languages instruction
+        $instruction = $request->file($defaultLanguage . 'instruction');
+        //On product update default languages instruction is nullabe
+        if($instruction) {
+            $extension = '.' . $instruction->getClientOriginalExtension();
+            $filename = $transliteratedName . '--' . str_replace('_', '', $defaultLanguage) . $extension;
+
+            $instruction->move($instructionsPath, $filename);
+            $product[$defaultLanguage . 'instruction'] = $filename;
+        }
+
+        // store secondary languages instructions
+        foreach($secondaryLanguages as $secLang) {
+            $file = $request->file($secLang . 'instruction');
+            if($file) {
+                $extension = '.' . $file->getClientOriginalExtension();
+                $filename = $transliteratedName . '--' . str_replace('_', '', $secLang) . $extension;
+
+                $file->move($instructionsPath, $filename);
+                $product[$secLang . 'instruction'] = $filename;
+            // else assign default languages instruction if file not uploaded and its create method
+            } else if(!$file && !$product[$secLang . 'instruction']) {
+                $product[$secLang . 'instruction'] = $product[$defaultLanguage . 'instruction'];
+            }
+        }
     }
 
 
     /**
-     * Store products instruction files
-     * RU values used as default value for EN/KA values
+     * Filling fields for the Default language are required! 
+     * Unfilled fields of Secondary languages will automatically be filled with data from the Default language!
+     * 
+     * Used to upload products instruction on create & edit
+     * Default language instructions used as default value for secondary language instructions
      *
-     * @param \Eloquent\Model $item
      * @param \Http\Request $request
-     * @return null
+     * @param \Eloquent\Model\Product $product
+     * @return void
      */
-    public static function storeProductInstructions($product, $request) 
+    public static function uploadProductImages($request, $product)
     {
-        $defaultLanguage = 'ru_';
-        $secondaryLanguages = ['en_', 'ka_'];
+        $defaultLanguage = Helper::DEFAULT_LANGUAGE;
+        $secondaryLanguages = Helper::SECONDARY_LANGUAGES;
 
-        $instructionPath = public_path('instructions/');
-        $transliteratedName = Helper::transliterateIntoLatin($request->ru_name);
+        $productsPath = public_path(Helper::PRODUCTS_PATH);
+        $transliteratedName = $product->url;
 
-        // store default instruction
-        $instruction = $request->file($defaultLanguage . 'instruction');
-        $default_extension = '.' . $instruction->getClientOriginalExtension();
-        $instruction->move($instructionPath . str_replace('_', '', $defaultLanguage), $transliteratedName . $default_extension);
-        $product[$defaultLanguage . 'instruction'] = $transliteratedName . $default_extension;
+        // store default languages image
+        $image = $request->file($defaultLanguage . 'image');
+        //On product update default languages image is nullabe
+        if($image) {
+            $extension = '.' . $image->getClientOriginalExtension();
+            $filename = $transliteratedName . '--' . str_replace('_', '', $defaultLanguage) . $extension;
 
-        // store seconray instructions
-        foreach($secondaryLanguages as $secLang) {
-            $file = $request->file($secLang . 'instruction');
-            // store instruction if exists
-            if($file) {
-                $extension = '.' . $file->getClientOriginalExtension();
-                $file->move($instructionPath . str_replace('_', '', $secLang), $transliteratedName . $extension);
-                $product[$secLang . 'instruction'] = $transliteratedName . $extension;
-            // else copy default instruction
-            } else {
-                $defaultInstructionPath = $instructionPath . str_replace('_', '', $defaultLanguage) . '/' .  $transliteratedName . $default_extension;
-                $secondaryInstructionPath = $instructionPath . str_replace('_', '', $secLang) . '/' .  $transliteratedName . $default_extension;
-                File::copy($defaultInstructionPath,  $secondaryInstructionPath);
-                $product[$secLang . 'instruction'] = $transliteratedName . $default_extension;
-            }
+            $image->move($productsPath, $filename);
+            $product[$defaultLanguage . 'image'] = $filename;
+
+            // make thumb from original and store it
+            $thumb = Image::make($productsPath . '/' . $filename);
+            $thumb->resize(400, null, function($constraint) {
+                $constraint->aspectRatio();
+            });
+            $thumb->save($productsPath . '/thumbs//' . $filename);
         }
 
-        return null;
-    }
+        // store secondary languages image
+        foreach($secondaryLanguages as $secLang) {
+            $file = $request->file($secLang . 'image');
+            if($file) {
+                $extension = '.' . $file->getClientOriginalExtension();
+                $filename = $transliteratedName . '--' . str_replace('_', '', $secLang) . $extension;
 
-    public function storeProductImages()
-    {
-        
+                $file->move($productsPath, $filename);
+                $product[$secLang . 'image'] = $filename;
+
+                // make thumb from original and store it
+                $thumb = Image::make($productsPath . '/' . $filename);
+                $thumb->resize(400, null, function($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $thumb->save($productsPath . '/thumbs//' . $filename);
+
+            // else assign default languages image if file not uploaded and its create method
+            } else if(!$file && !$product[$secLang . 'image']) {
+                $product[$secLang . 'image'] = $product[$defaultLanguage . 'image'];
+            }
+        }
     }
 
 }

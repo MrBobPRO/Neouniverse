@@ -45,7 +45,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/products/update', [ProductController::class, 'update'])->name('products.update');
     Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
     Route::post('/products/remove', [ProductController::class, 'remove'])->name('products.remove');
-    Route::post('/products/remove-multiple', [ProductController::class, 'remove'])->name('products.remove.multiple');
+    Route::post('/products/remove-multiple', [ProductController::class, 'removeMultiple'])->name('products.remove.multiple');
 
     //news
     Route::get('/dashboard/news', [NewsController::class, 'dashboardIndex'])->name('dashboard.news.index');
@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/news/update', [NewsController::class, 'update'])->name('news.update');
     Route::post('/news/store', [NewsController::class, 'store'])->name('news.store');
     Route::post('/news/remove', [NewsController::class, 'remove'])->name('news.remove');
+    Route::post('/news/remove-multiple', [NewsController::class, 'removeMultiple'])->name('news.remove.multiple');
 
 });
 

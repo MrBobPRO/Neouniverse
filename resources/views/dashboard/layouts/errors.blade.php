@@ -1,8 +1,8 @@
 @if($errors->any())
-    <div class="single-page-alert alert alert-danger">
-        <b class="alert__title">Ошибка! Пожалуйста исправьте ошибки и попробуйте заново.</b>
+    <div class="alert alert-danger inner-page-alert">
+        <b>Ошибка! Пожалуйста исправьте ошибки и попробуйте заново.</b>
         @foreach ($errors->all() as $error)
-            <li class="alert__item">{{ $error }}</li>
+            <li>{{ $error }}</li>
         @endforeach
     </div>
 @endif

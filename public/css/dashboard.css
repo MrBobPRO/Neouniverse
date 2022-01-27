@@ -204,6 +204,14 @@ input[type="file"]:after {
 /*-------------------------Pagination End-------------------------*/
 
 
+/*-------------------------Alert start-------------------------*/
+.alert {
+    margin: 0;
+    padding: 15px 20px;
+}
+/*-------------------------Alert end-------------------------*/
+
+
 /*-------------------------Main start-------------------------*/
 .main {
     width: 100%;
@@ -504,6 +512,10 @@ input[type="file"]:after {
 .form-group label span {
     color: red;
 }
+.form-group label a {
+    color: var(--main-color);
+    text-decoration: underline;
+}
 .form-input {
     width: 100%;
     padding: 8px 16px;
@@ -523,6 +535,28 @@ input[type="file"]:after {
     border-color: #61bf1a61;
     outline: 0;
     box-shadow: 0 0px 12px 0px #61bf1a85;
+}
+.form-group__image-container {
+    position: relative;
+    display: flex;
+    width: 50%;
+    margin-top: 10px;
+    border: 20px solid #F4F6F9;
+    border-radius: 5px;
+    cursor: zoom-in;
+}
+.form-group__image-container img {
+    width: 100%;
+}
+.form-group__image-container span {
+    position: absolute;
+    top: 0;
+    max-width: 100%;
+    padding: 5px 10px;
+    color: white;
+    font-size: 14px;
+    background: black;
+    border-radius: 4px;
 }
 .inner-form__actions {
     display: flex;

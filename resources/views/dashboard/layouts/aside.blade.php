@@ -9,25 +9,25 @@
         <ul>
             <li>
                 <a class="@if( strpos($route, 'products') !== false || $route == 'dashboard.index') active @endif" href="{{route('dashboard.index')}}">
-                    <span class="material-icons">menu_open</span> Продукты
+                    <span class="material-icons">medication</span> Продукты
                 </a>
             </li>
 
             <li>
                 <a class="@if( strpos($route, 'news') !== false ) active @endif" href="{{route('dashboard.news.index')}}">
-                    <span class="material-icons">menu_open</span> Новости
+                    <span class="material-icons">article</span> Новости
                 </a>
             </li>
 
             <li>
                 <a class="@if( strpos($route, 'texts') !== false ) active @endif" href="{{route('dashboard.news.index')}}">
-                    <span class="material-icons">menu_open</span> Тексты
+                    <span class="material-icons">notes</span> Тексты
                 </a>
             </li>
 
             <li>
                 <a class="@if( strpos($route, 'translations') !== false ) active @endif" href="{{route('dashboard.news.index')}}">
-                    <span class="material-icons">menu_open</span> Переводы
+                    <span class="material-icons">translate</span> Переводы
                 </a>
             </li>
 

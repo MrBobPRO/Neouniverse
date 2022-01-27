@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('en_name');
             $table->string('ka_name');
 
-            $table->string('url');
+            $table->string('url')->unique();
             $table->boolean('prescription'); //RX or OTC
             $table->integer('form_id');
             
