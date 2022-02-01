@@ -7,10 +7,10 @@
     </div>
 @endif
 
-<form class="inner-form" action="{{ route('products.update') }}" method="POST" enctype="multipart/form-data">
+<form class="inner-form" action="{{ route('news.update') }}" method="POST" enctype="multipart/form-data">
     {{ csrf_field() }}
 
-    <input type="hidden" name="id" value="{{ $product->id }}">
+    <input type="hidden" name="id" value="{{ $news->id }}">
 
     {{-- Tab start --}}
     <div class="languages-tab">
@@ -24,7 +24,7 @@
                 <button class="nav-link" id="nav-en-tab" data-bs-toggle="tab" data-bs-target="#nav-en"
                     type="button" role="tab" aria-controls="nav-en" aria-selected="false">Английский
                 </button>
-    
+
                 <button class="nav-link" id="nav-ka-tab" data-bs-toggle="tab" data-bs-target="#nav-ka"
                     type="button" role="tab" aria-controls="nav-ka" aria-selected="false">Грузинский
                 </button>
@@ -36,34 +36,17 @@
             {{-- RU Tab Content start --}}
             <div class="tab-pane fade show active" id="nav-ru" role="tabpanel" aria-labelledby="nav-ru-tab">
                 <div class="form-group">
-                    <label>Название <span>*</span></label>
-                    <input class="form-input" name="ru_name" type="text" value="{{ $product->ru_name }}" required>
+                    <label>Заголовок <span>*</span></label>
+                    <input class="form-input" name="ru_title" type="text" value="{{ $news->ru_title }}" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Тип <span>*</span></label>
-                    <select class="selectize-singular" name="prescription" required>
-                        <option value="1" {{ $product->prescription ? 'selected' : '' }}>RX</option>
-                        <option value="0" {{ !$product->prescription ? 'selected' : '' }}>OTC</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Форма выпуска <span>*</span></label>
-                    <select class="selectize-singular" name="form_id" required>
-                        @foreach ($forms as $form)
-                            <option value="{{ $form->id }}" {{ $product->form_id == $form->id ? 'selected' : '' }}>{{ $form->ru_name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Направления <span>*</span></label>
+                    <label>Категория <span>*</span></label>
                     <select class="selectize-multiple" name="categories[]" multiple="multiple" required>
                         @foreach ($categories as $category)
                             <option value="{{ $category->id }}"
-                                @foreach ($product->categories as $prodCat)
-                                    @if($prodCat->id == $category->id) selected @endif
+                                @foreach ($news->categories as $newsCat)
+                                    @if($newsCat->id == $category->id) selected @endif
                                 @endforeach
                                 >{{ $category->ru_name }}
                             </option>
@@ -72,178 +55,64 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Симптомы <span>*</span></label>
-                    <select class="selectize-multiple" name="symptoms[]" multiple="multiple" required>
-                        @foreach ($symptoms as $symptom)
-                            <option value="{{ $symptom->id }}"
-                                @foreach ($product->symptoms as $prodSym)
-                                    @if($prodSym->id == $symptom->id) selected @endif
-                                @endforeach
-                                >{{ $symptom->ru_name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+                    <label>Изображение <span>*</span></label>
+                    <input class="form-input" name="ru_image" type="file" accept=".png, .jpg, .jpeg">
 
-                <div class="form-group">
-                    <label>Изображение. Ширина и высота должны быть равны !</label>
-                    <input class="form-input" name="ru_image" type="file" accept=".png, .jpg, .jpeg" value="{{ old('ru_image') }}">
-
-                    <a class="form-group__image-container" href="{{ asset('img/products/' . $product->ru_image)}}" target="_blank">
-                        <img src="{{ asset('img/products/' . $product->ru_image)}}">
-                        <span>{{ $product->ru_image }}</span>
+                    <a class="form-group__image-container" href="{{ asset('img/news/' . $news->ru_image)}}" target="_blank">
+                        <img src="{{ asset('img/news/thumbs/' . $news->ru_image)}}">
+                        <span>{{ $news->ru_image }}</span>
                     </a>
                 </div>
 
                 <div class="form-group">
-                    <label>Инструкция. Формат : pdf.
-                        <a href="/instructions/{{ $product->ru_instruction }}" target="_blank">{{ $product->ru_instruction }}</a>
-                    </label>
-
-                    <input class="form-input" name="ru_instruction" accept=".pdf" type="file" value="{{ old('ru_instruction') }}">
+                    <label>Текст <span>*</span></label>
+                    <textarea class="simditor-wysiwyg" name="ru_body" required>{{ $news->ru_body }}</textarea>
                 </div>
-
-                <div class="form-group">
-                    <label>Ссылка на приобретение препарата <span>*</span>. Полная ссылка включая https или http</label>
-                    <input class="form-input" name="ru_obtain_link" type="text" placeholder="https://salomat.tj/" value="{{ $product->ru_obtain_link }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Количество <span>*</span> . 5 мл / 10 таблеток итд</label>
-                    <input class="form-input" name="ru_amount" type="text" value="{{ $product->ru_amount }}" required>
-                </div>
-
-                <div class="form-group">
-                    <label>Описание <span>*</span></label>
-                    <textarea class="simditor-wysiwyg" name="ru_description" required>{{ $product->ru_description }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Состав <span>*</span></label>
-                    <textarea class="simditor-wysiwyg" name="ru_composition" required>{{ $product->ru_composition }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Показания к применению <span>*</span></label>
-                    <textarea class="simditor-wysiwyg" name="ru_testimony" required>{{ $product->ru_testimony }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Способ применения <span>*</span></label>
-                    <textarea class="simditor-wysiwyg" name="ru_use" required>{{ $product->ru_use }}</textarea>
-                </div>
-
             </div> {{-- RU Tab Content end --}}
     
             {{-- EN Tab Content start --}}
             <div class="tab-pane fade" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
                 <div class="form-group">
-                    <label>Название</label>
-                    <input class="form-input" name="en_name" type="text" value="{{ $product->en_name }}">
+                    <label>Заголовок</label>
+                    <input class="form-input" name="en_title" type="text" value="{{ $news->en_title }}">
                 </div>
 
                 <div class="form-group">
-                    <label>Изображение. Ширина и высота должны быть равны !</label>
+                    <label>Изображение</label>
                     <input class="form-input" name="en_image" type="file" accept=".png, .jpg, .jpeg">
 
-                    <a class="form-group__image-container" href="{{ asset('img/products/' . $product->en_image)}}" target="_blank">
-                        <img src="{{ asset('img/products/' . $product->en_image)}}">
-                        <span>{{ $product->en_image }}</span>
+                    <a class="form-group__image-container" href="{{ asset('img/news/' . $news->en_image)}}" target="_blank">
+                        <img src="{{ asset('img/news/thumbs/' . $news->en_image)}}">
+                        <span>{{ $news->en_image }}</span>
                     </a>
                 </div>
 
                 <div class="form-group">
-                    <label>Инструкция. Формат : pdf
-                        <a href="/instructions/{{ $product->en_instruction }}" target="_blank">{{ $product->en_instruction }}</a>
-                    </label>
-
-                    <input class="form-input" name="en_instruction" accept=".pdf" type="file">
-                </div>
-
-                <div class="form-group">
-                    <label>Ссылка на приобретение препарата. Полная ссылка включая https или http</label>
-                    <input class="form-input" name="en_obtain_link" type="text" placeholder="https://salomat.tj/" value="{{ $product->en_obtain_link }}">
-                </div>
-
-                <div class="form-group">
-                    <label>Количество. 5 мл / 10 таблеток итд</label>
-                    <input class="form-input" name="en_amount" type="text" value="{{ $product->en_amount }}">
-                </div>
-
-                <div class="form-group">
-                    <label>Описание</label>
-                    <textarea class="simditor-wysiwyg" name="en_description">{{ $product->en_description }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Состав</label>
-                    <textarea class="simditor-wysiwyg" name="en_composition">{{ $product->en_composition }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Показания к применению</label>
-                    <textarea class="simditor-wysiwyg" name="en_testimony">{{ $product->en_testimony }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Способ применения</label>
-                    <textarea class="simditor-wysiwyg" name="en_use">{{ $product->en_use }}</textarea>
+                    <label>Текст</label>
+                    <textarea class="simditor-wysiwyg" name="en_body">{{ $news->en_body }}</textarea>
                 </div>
             </div> {{-- EN Tab Content end --}}
     
             {{-- KA Tab Content start --}}
             <div class="tab-pane fade" id="nav-ka" role="tabpanel" aria-labelledby="nav-ka-tab">
                 <div class="form-group">
-                    <label>Название</label>
-                    <input class="form-input" name="ka_name" type="text" value="{{ $product->ka_name }}">
+                    <label>Заголовок</label>
+                    <input class="form-input" name="ka_title" type="text" value="{{ $news->ka_title }}">
                 </div>
 
                 <div class="form-group">
-                    <label>Изображение. Ширина и высота должны быть равны !</label>
+                    <label>Изображение</label>
                     <input class="form-input" name="ka_image" type="file" accept=".png, .jpg, .jpeg">
 
-                    <a class="form-group__image-container" href="{{ asset('img/products/' . $product->ka_image)}}" target="_blank">
-                        <img src="{{ asset('img/products/' . $product->ka_image)}}">
-                        <span>{{ $product->ka_image }}</span>
+                    <a class="form-group__image-container" href="{{ asset('img/news/' . $news->ka_image)}}" target="_blank">
+                        <img src="{{ asset('img/news/thumbs/' . $news->ka_image)}}">
+                        <span>{{ $news->ka_image }}</span>
                     </a>
                 </div>
 
                 <div class="form-group">
-                    <label>Инструкция. Формат : pdf
-                        <a href="/instructions/{{ $product->ka_instruction }}" target="_blank">{{ $product->ka_instruction }}</a>
-                    </label>
-
-                    <input class="form-input" name="ka_instruction" accept=".pdf" type="file">
-                </div>
-
-                <div class="form-group">
-                    <label>Ссылка на приобретение препарата. Полная ссылка включая https или http</label>
-                    <input class="form-input" name="ka_obtain_link" type="text" placeholder="https://salomat.tj/" value="{{ $product->ka_obtain_link }}">
-                </div>
-
-                <div class="form-group">
-                    <label>Количество. 5 мл / 10 таблеток итд</label>
-                    <input class="form-input" name="ka_amount" type="text" value="{{ $product->ka_amount }}">
-                </div>
-
-                <div class="form-group">
-                    <label>Описание</label>
-                    <textarea class="simditor-wysiwyg" name="ka_description">{{ $product->ka_description }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Состав</label>
-                    <textarea class="simditor-wysiwyg" name="ka_composition">{{ $product->ka_composition }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Показания к применению</label>
-                    <textarea class="simditor-wysiwyg" name="ka_testimony">{{ $product->ka_testimony }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label>Способ применения</label>
-                    <textarea class="simditor-wysiwyg" name="ka_use">{{ $product->ka_use }}</textarea>
+                    <label>Текст</label>
+                    <textarea class="simditor-wysiwyg" name="ka_body">{{ $news->ka_body }}</textarea>
                 </div>
             </div> {{-- KA Tab Content end --}}
 
@@ -273,15 +142,15 @@
             </div>
 
             <div class="modal-body">
-                Вы уверены что хотите удалить продукт ?
+                Вы уверены что хотите удалить новость ?
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="button button--thirdinary" data-bs-dismiss="modal">Отмена</button>
 
-                <form action="{{ route('products.remove') }}" method="POST">
+                <form action="{{ route('news.remove') }}" method="POST">
                     {{ csrf_field() }}
-                    <input type="hidden" value="{{ $product->id }}" name="id" id="remove_item_modal_input" />
+                    <input type="hidden" value="{{ $news->id }}" name="id" id="remove_item_modal_input" />
                     <button type="submit" class="button button--secondary">Удалить</button>
                 </form>
             </div>

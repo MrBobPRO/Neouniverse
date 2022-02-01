@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Models\News;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\View;
 
 class NewsController extends Controller
@@ -73,7 +75,7 @@ class NewsController extends Controller
         }
 
         $news = $news->latest()
-                    ->select('id', $locale . '_title', $locale . '_body', 'image', 'url')
+                    ->select('id', $locale . '_title', $locale . '_body', $locale . '_image', 'url')
                     ->paginate(12)
                     ->appends($request->except(['page','_token']))
                     ->fragment('all_news');
@@ -97,8 +99,8 @@ class NewsController extends Controller
         $activePage = $request->page ? $request->page : 1;
 
         $news = News::orderBy($orderBy, $orderType)
-        ->paginate(30, ['*'], 'page', $activePage)
-        ->appends($request->except('page'));
+            ->paginate(30, ['*'], 'page', $activePage)
+            ->appends($request->except('page'));
 
         $reversedOrderType = $orderType == 'asc' ? 'desc' : 'asc';
 
@@ -109,83 +111,66 @@ class NewsController extends Controller
     {
         $categories = NewsCategory::orderBy('ru_name', 'asc')->get();
 
-        return view('dashboard.news.create', compact('categories', 'forms'));
+        return view('dashboard.news.create', compact('categories'));
     }
 
     public function dashboardSingle($id)
     {
-        $product = Product::find($id);
+        $news = News::find($id);
+        $categories = NewsCategory::orderBy('ru_name', 'asc')->get();
 
-        $categories = ProductsCategory::orderBy('ru_name', 'asc')->get();
-        $symptoms = Symptom::orderBy('ru_name', 'asc')->get();
-        $forms = Form::orderBy('ru_name', 'asc')->get();
-
-        return view('dashboard.products.single', compact('product', 'symptoms', 'categories', 'forms'));
+        return view('dashboard.news.single', compact('news','categories'));
     }
 
     public function store(Request $request)
     {
         $validation_rules = [
-            Helper::DEFAULT_LANGUAGE . "name" => "unique:products"
+            Helper::DEFAULT_LANGUAGE . "title" => "unique:news"
         ];
-
         $validation_messages = [
-            Helper::DEFAULT_LANGUAGE . "name.unique" => "Продукт с таким названием уже существует !",
+            Helper::DEFAULT_LANGUAGE . "title.unique" => "Новость с таким заголовком уже существует !",
         ];
-
         Validator::make($request->all(), $validation_rules, $validation_messages)->validate();
 
-        $product = new Product();
+        $news = new News();
 
-        $multiLanguageFields = ['name', 'obtain_link', 'amount', 'description', 'composition', 'testimony', 'use'];
-        Helper::fillMultiLanguageFields($request, $product, $multiLanguageFields);
+        $multiLanguageFields = ['title', 'body'];
+        Helper::fillMultiLanguageFields($request, $news, $multiLanguageFields);
 
-        $product->url = Helper::transliterateIntoLatin($request->ru_name);
-        $product->prescription = $request->prescription;
-        $product->form_id = $request->form_id;
+        $news->url = Helper::transliterateIntoLatin($request->ru_title);
 
-        Helper::uploadProductInstructions($request, $product);
-        Helper::uploadProductImages($request, $product);
+        Helper::uploadFiles($request, $news, 'image', Helper::NEWS_PATH, true, 400, 400);
 
-        $product->save();
+        $news->save();
+        $news->categories()->attach($request->categories);
 
-        $product->categories()->attach($request->categories);
-        $product->symptoms()->attach($request->symptoms);
-
-        return redirect()->route('dashboard.index');
+        return redirect()->route('dashboard.news.index');
     }
 
     public function update(Request $request)
     {
-        $product = Product::find($request->id);
+        $news = News::find($request->id);
         $defaultLanguage = Helper::DEFAULT_LANGUAGE;
 
-        // escape duplicate product name
+        // escape duplicate news title
         $validationErrors = [];
-        if($request[$defaultLanguage . 'name'] != $product[$defaultLanguage . 'name']) {
-            $duplicate = Product::where($defaultLanguage . 'name', $request[$defaultLanguage . 'name'])->first();
-            if ($duplicate) array_push($validationErrors, "Продукт с таким названием уже существует!");
+        if($request[$defaultLanguage . 'title'] != $news[$defaultLanguage . 'title']) {
+            $duplicate = News::where($defaultLanguage . 'title', $request[$defaultLanguage . 'title'])->first();
+            if ($duplicate) array_push($validationErrors, "Новость с таким заголовком уже существует!");
         }
 
         if(count($validationErrors) > 0) return back()->withInput()->withErrors($validationErrors);
 
-        $multiLanguageFields = ['name', 'obtain_link', 'amount', 'description', 'composition', 'testimony', 'use'];
-        Helper::fillMultiLanguageFields($request, $product, $multiLanguageFields);
+        $multiLanguageFields = ['title', 'body'];
+        Helper::fillMultiLanguageFields($request, $news, $multiLanguageFields);
 
-        $product->url = Helper::transliterateIntoLatin($request->ru_name);
-        $product->prescription = $request->prescription;
-        $product->form_id = $request->form_id;
+        $news->url = Helper::transliterateIntoLatin($request->ru_title);
+        Helper::uploadFiles($request, $news, 'image', Helper::NEWS_PATH, true, 400, 400);
 
-        Helper::uploadProductInstructions($request, $product);
-        Helper::uploadProductImages($request, $product);
+        $news->save();
 
-        $product->save();
-
-        $product->categories()->detach();
-        $product->categories()->attach($request->categories);
-
-        $product->symptoms()->detach();
-        $product->symptoms()->attach($request->symptoms);
+        $news->categories()->detach();
+        $news->categories()->attach($request->categories);
 
         return redirect()->back();
     }
@@ -194,7 +179,7 @@ class NewsController extends Controller
     {
         $this->delete([$request->id]);
 
-        return redirect()->route('dashboard.index');
+        return redirect()->route('dashboard.news.index');
     }
 
     public function removeMultiple(Request $request)
@@ -212,10 +197,9 @@ class NewsController extends Controller
     public function delete($ids)
     {
         foreach($ids as $id) {
-            $product = Product::find($id);
-            $product->categories()->detach();
-            $product->symptoms()->detach();
-            $product->delete();
+            $news = News::find($id);
+            $news->categories()->detach();
+            $news->delete();
         }
     }
 

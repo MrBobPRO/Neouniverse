@@ -90,7 +90,7 @@
                     <input class="form-input" name="ru_image" type="file" accept=".png, .jpg, .jpeg" value="{{ old('ru_image') }}">
 
                     <a class="form-group__image-container" href="{{ asset('img/products/' . $product->ru_image)}}" target="_blank">
-                        <img src="{{ asset('img/products/' . $product->ru_image)}}">
+                        <img src="{{ asset('img/products/thumbs/' . $product->ru_image)}}">
                         <span>{{ $product->ru_image }}</span>
                     </a>
                 </div>

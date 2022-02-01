@@ -129,8 +129,8 @@ class ProductController extends Controller
         $activePage = $request->page ? $request->page : 1;
 
         $products = Product::orderBy($orderBy, $orderType)
-        ->paginate(30, ['*'], 'page', $activePage)
-        ->appends($request->except('page'));
+            ->paginate(30, ['*'], 'page', $activePage)
+            ->appends($request->except('page'));
 
         $reversedOrderType = $orderType == 'asc' ? 'desc' : 'asc';
 
@@ -162,15 +162,12 @@ class ProductController extends Controller
         $validation_rules = [
             Helper::DEFAULT_LANGUAGE . "name" => "unique:products"
         ];
-
         $validation_messages = [
             Helper::DEFAULT_LANGUAGE . "name.unique" => "Продукт с таким названием уже существует !",
         ];
-
         Validator::make($request->all(), $validation_rules, $validation_messages)->validate();
 
         $product = new Product();
-
         $multiLanguageFields = ['name', 'obtain_link', 'amount', 'description', 'composition', 'testimony', 'use'];
         Helper::fillMultiLanguageFields($request, $product, $multiLanguageFields);
 
@@ -178,8 +175,8 @@ class ProductController extends Controller
         $product->prescription = $request->prescription;
         $product->form_id = $request->form_id;
 
-        Helper::uploadProductInstructions($request, $product);
-        Helper::uploadProductImages($request, $product);
+        Helper::uploadFiles($request, $product, 'instruction', Helper::INSTRUCTIONS_PATH, false);
+        Helper::uploadFiles($request, $product, 'image', Helper::PRODUCTS_PATH, true, 400);
 
         $product->save();
 
@@ -210,8 +207,8 @@ class ProductController extends Controller
         $product->prescription = $request->prescription;
         $product->form_id = $request->form_id;
 
-        Helper::uploadProductInstructions($request, $product);
-        Helper::uploadProductImages($request, $product);
+        Helper::uploadFiles($request, $product, 'instruction', Helper::INSTRUCTIONS_PATH, false);
+        Helper::uploadFiles($request, $product, 'image', Helper::PRODUCTS_PATH, true, 400);
 
         $product->save();
 

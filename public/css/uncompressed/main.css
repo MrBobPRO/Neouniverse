@@ -341,6 +341,7 @@ button {
 }
 .footer__contacts-address {
     margin: 30px 0;
+    min-width: 350px;
 }
 .footer__contacts-link {
     display: flex;

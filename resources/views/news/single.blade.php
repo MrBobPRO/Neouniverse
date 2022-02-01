@@ -38,7 +38,7 @@
     <section class="news-content">
         <div class="news-content__inner main-container">
             <h1 class="news-content__title main-title">{{ $new[$locale . '_title']}}</h1>
-            <img class="news-content__image" src="{{ asset('img/news/' . $new->image) }}" alt="{{ $new[$locale . '_title'] }}">
+            <img class="news-content__image" src="{{ asset('img/news/' . $new[$locale . '_image']) }}" alt="{{ $new[$locale . '_title'] }}">
             <div class="news-content__body">
                 {!! $new[$locale . '_body'] !!}
             </div>

@@ -35,7 +35,7 @@
 
         {{-- Contact start --}}
         <a href="#contact_us" class="header__contact-us @if($route == 'home') header__contact-us--shadowed @endif">
-            <span class="material-icons-outlined search__icon">portrait</span> {{ __('Связатсья с нами') }}
+            <span class="material-icons-outlined search__icon">portrait</span> {{ __('Связатся с нами') }}
         </a>  {{-- Contact end --}}
 
         <div class="dropdown language-dropdown">

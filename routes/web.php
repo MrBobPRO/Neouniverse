@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\OptionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TranslationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +59,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/news/remove', [NewsController::class, 'remove'])->name('news.remove');
     Route::post('/news/remove-multiple', [NewsController::class, 'removeMultiple'])->name('news.remove.multiple');
 
+    //options
+    Route::get('/dashboard/options', [OptionController::class, 'dashboardIndex'])->name('dashboard.options.index');
+    Route::get('/dashboard/options/{id}', [OptionController::class, 'dashboardSingle'])->name('dashboard.options.single');
+
+    Route::post('/options/update', [OptionController::class, 'update'])->name('options.update');
+
+    //translations
+    Route::get('/dashboard/translations', [TranslationController::class, 'dashboardIndex'])->name('dashboard.translations.index');
+    Route::get('/dashboard/translations/{name}', [TranslationController::class, 'dashboardSingle'])->name('dashboard.translations.single');
+
+    Route::post('/translations/update', [TranslationController::class, 'update'])->name('translations.update');
 });
 
 require_once __DIR__.'/auth.php';

@@ -28,7 +28,9 @@ class NewsSeeder extends Seeder
             $news->en_title = $title[$i];
             $news->ka_title = $title[$i];
             $news->url = Helper::transliterateIntoLatin($title[$i]);
-            $news->image = Helper::transliterateIntoLatin($title[$i]) . '.jpg';
+            $news->ru_image = Helper::transliterateIntoLatin($title[$i]) . '.jpg';
+            $news->en_image = Helper::transliterateIntoLatin($title[$i]) . '.jpg';
+            $news->ka_image = Helper::transliterateIntoLatin($title[$i]) . '.jpg';
             $news->ru_body = $body;
             $news->en_body = $body;
             $news->ka_body = $body;

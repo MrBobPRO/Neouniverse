@@ -20,13 +20,13 @@
             </li>
 
             <li>
-                <a class="@if( strpos($route, 'texts') !== false ) active @endif" href="{{route('dashboard.news.index')}}">
+                <a class="@if( strpos($route, 'option') !== false ) active @endif" href="{{route('dashboard.options.index')}}">
                     <span class="material-icons">notes</span> Тексты
                 </a>
             </li>
 
             <li>
-                <a class="@if( strpos($route, 'translations') !== false ) active @endif" href="{{route('dashboard.news.index')}}">
+                <a class="@if( strpos($route, 'translations') !== false ) active @endif" href="{{route('dashboard.translations.index')}}">
                     <span class="material-icons">translate</span> Переводы
                 </a>
             </li>

@@ -28,7 +28,15 @@
             @break
 
             @case('dashboard.news.single')
-                Новости / Редактировать / {{$news->ru_name}}
+                Новости / Редактировать / {{$news->ru_title}}
+            @break
+
+            @case('dashboard.options.index')
+                Тексты ({{$itemsCount}})
+            @break
+
+            @case('dashboard.options.single')
+                Тексты / Редактировать / {{$option->key}}
             @break
 
         @endswitch

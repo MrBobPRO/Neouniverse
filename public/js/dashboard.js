@@ -108,3 +108,19 @@ function select_all_checkboxes() {
         }
     }
 }
+
+// JSON Formatter
+function getJson() {
+    try {
+        return JSON.parse($('#json-input').val());
+    } catch (ex) {
+        console.log('Wrong JSON Format: ' + ex);
+    }
+}
+// initialize
+if ($('#json-display')) {
+    var editor = new JsonEditor('#json-display', getJson());
+    // enable translate button
+    editor.load(getJson());
+}
+
