@@ -19,20 +19,15 @@ class TranslationController extends Controller
 
     public function dashboardSingle($tag)
     {
-        $file = file_get_contents(base_path('resources/lang/' . $tag . '.json'));
+        $content = file_get_contents(base_path('resources/lang/' . $tag . '.json'));
 
-        return view('dashboard.translations.single', compact('file', 'tag'));
+        return view('dashboard.translations.single', compact('content', 'tag'));
     }
 
     public function update(Request $request)
     {
-        dd($request->dada);
-        $option = Option::find($request->id);
-
-        $multiLanguageFields = ['value'];
-        Helper::fillMultiLanguageFields($request, $option, $multiLanguageFields);
-
-        $option->save();
+        $file = base_path('resources/lang/' . $request->tag . '.json');
+        file_put_contents($file, $request->content);
 
         return redirect()->back();
     }

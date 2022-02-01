@@ -67,7 +67,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //translations
     Route::get('/dashboard/translations', [TranslationController::class, 'dashboardIndex'])->name('dashboard.translations.index');
-    Route::get('/dashboard/translations/{name}', [TranslationController::class, 'dashboardSingle'])->name('dashboard.translations.single');
+    Route::get('/dashboard/translations/{tag}', [TranslationController::class, 'dashboardSingle'])->name('dashboard.translations.single');
 
     Route::post('/translations/update', [TranslationController::class, 'update'])->name('translations.update');
 });

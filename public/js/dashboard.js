@@ -75,7 +75,7 @@ function show_item_remove_modal(id) {
 }
 
 
-// Submit Main Form on Rmove selected items modal button click
+// Submit Main Form on Remove selected items modal button click
 function submit_main_form() {
     document.getElementById("main_form").submit();
 }
@@ -109,7 +109,8 @@ function select_all_checkboxes() {
     }
 }
 
-// JSON Formatter
+
+// initialize JSON Formatter
 function getJson() {
     try {
         return JSON.parse($('#json-input').val());
@@ -117,10 +118,31 @@ function getJson() {
         console.log('Wrong JSON Format: ' + ex);
     }
 }
-// initialize
+
 if ($('#json-display')) {
-    var editor = new JsonEditor('#json-display', getJson());
-    // enable translate button
+    let editor = new JsonEditor('#json-display', getJson());
     editor.load(getJson());
 }
 
+// validate json input before form submit
+function validate_json_input(event) {
+    let json_display = document.getElementById('json-display');
+    let json_input = document.getElementById('json-input');
+
+    if(isValidJson(json_display.textContent)) {
+        json_input.value = json_display.textContent;
+    } else {
+        event.preventDefault();
+        alert('Пожалуйста, исправьте ошибки прежде чем сохранить файл!');
+    }
+}
+
+function isValidJson(str) {
+    try {
+        if (typeof str != 'string') return false;
+        JSON.parse(str);
+        return true;
+    } catch (error) {
+        return false;
+    }
+}

@@ -39,6 +39,14 @@
                 Тексты / Редактировать / {{$option->key}}
             @break
 
+            @case('dashboard.translations.index')
+                Переводы
+            @break
+
+            @case('dashboard.translations.single')
+                Переводы / Редактировать / {{$tag}}
+            @break
+
         @endswitch
     </h1> {{-- Header Title end --}}
 
