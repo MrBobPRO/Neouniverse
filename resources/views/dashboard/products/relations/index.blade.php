@@ -1,7 +1,11 @@
 @extends('dashboard.layouts.app')
 @section("main")
 
-@include('dashboard.layouts.search')
+@if($model == 'Form')
+    <div class="alert alert-success">
+        Будьте внимательны при удалении форм. Так как продукт с удаляемой формой останется без формы. Вам вручную нужно будет задать им новую новую форму.
+    </div>
+@endif
 
 {{-- List start --}}
 <div class="main-list">
@@ -9,15 +13,7 @@
     <div class="titles">
 
         <div class="titles__item">
-            <a class="{{$orderType}} {{$orderBy == 'ru_title' ? 'active' : ''}}" href="{{route('dashboard.news.index')}}?page={{$activePage}}&orderBy=ru_title&orderType={{$reversedOrderType}}">Заголовок</a>
-        </div>
-
-        <div class="titles__item">
-            <a class="{{$orderType}} {{$orderBy == 'created_at' ? 'active' : ''}}" href="{{route('dashboard.news.index')}}?page={{$activePage}}&orderBy=created_at&orderType={{$reversedOrderType}}">Дата добавление</a>
-        </div>
-
-        <div class="titles__item">
-            <a>Категории</a>
+            <a>Заголовок</a>
         </div>
 
         <div class="titles__actions">
@@ -28,38 +24,28 @@
 
 
     {{-- Main Form start --}}
-    <form action="{{ route('news.remove.multiple') }}" class="main-form" method="POST" id="main_form">
+    <form action="{{ route('products.relations.remove.multiple') }}" class="main-form" method="POST" id="main_form">
         @csrf
+        <input type="hidden" value="{{$model}}" name="model">
 
-        @foreach ($news as $new)
+        @foreach ($items as $item)
             <div class="list__item">
                 <div class="checkbox">
-                    <label for="{{$new->id}}" class="checkbox__label">
-                        <input class="checkbox__input" id="{{$new->id}}" type="checkbox" name="ids[]" value="{{$new->id}}">
+                    <label for="{{$item->id}}" class="checkbox__label">
+                        <input class="checkbox__input" id="{{$item->id}}" type="checkbox" name="ids[]" value="{{$item->id}}">
                         <span class="checkbox__checkmark"></span>
                     </label>
                 </div>
 
-                <div class="list__item-block">{{ $new->ru_title }}</div>
-                <div class="list__item-block">{{ Carbon\Carbon::create($new->created_at)->locale("ru")->isoFormat("DD MMMM YYYY HH:mm:s") }}</div>
-                <div class="list__item-block">
-                    @foreach ($new->categories as $category)
-                        {{ $category->ru_name }}
-                    @endforeach
-                </div>
+                <div class="list__item-block">{{ $item->ru_name }}</div>
 
                 <div class="list__item-actions">
-                    <a class="actions__button button--main" href="{{ route('news.single', $new->url) }}"
-                        target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Посмотреть">
-                        <span class="material-icons">visibility</span>
-                    </a>
-
-                    <a class="actions__button button--thirdinary" href="{{ route('dashboard.news.single', $new->id) }}" 
+                    <a class="actions__button button--thirdinary" href="{{ route('dashboard.products.relations.single', $item->id) }}?model={{$model}}" 
                         data-bs-toggle="tooltip" data-bs-placement="bottom" title="Редактировать">
                         <span class="material-icons">edit</span>
                     </a>
 
-                    <button class="actions__button button--secondary" type="button" onclick="show_item_remove_modal({{ $new->id }})"
+                    <button class="actions__button button--secondary" type="button" onclick="show_item_remove_modal({{ $item->id }})"
                         data-bs-toggle="tooltip" data-bs-placement="bottom" title="Удалить">
                         <span class="material-icons">delete</span>
                     </button>
@@ -68,7 +54,6 @@
         @endforeach
     </form> {{-- Main Form end --}}
 
-    {{ $news->links('dashboard.layouts.pagination') }}
 </div> {{-- List end --}}
 
 
@@ -82,15 +67,16 @@
             </div>
 
             <div class="modal-body">
-                Вы уверены что хотите удалить новость ?
+                Вы уверены что хотите удалить ?
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="button button--thirdinary" data-bs-dismiss="modal">Отмена</button>
 
-                <form action="{{ route('news.remove') }}" method="POST">
+                <form action="{{ route('products.relations.remove') }}" method="POST">
                     {{ csrf_field() }}
                     <input type="hidden" value="0" name="id" id="remove_item_modal_input" />
+                    <input type="hidden" value="{{$model}}" name="model">
                     <button type="submit" class="button button--secondary">Удалить</button>
                 </form>
             </div>
@@ -111,7 +97,7 @@
             </div>
 
             <div class="modal-body">
-                Вы уверены что хотите удалить отмеченные новости ?<br><br>
+                Вы уверены что хотите удалить отмеченные ?<br><br>
             </div>
             
             <div class="modal-footer">

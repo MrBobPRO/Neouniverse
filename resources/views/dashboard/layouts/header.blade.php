@@ -19,6 +19,18 @@
                 Продукты / Редактировать / {{$product->ru_name}}
             @break
 
+            @case('dashboard.products.relations.index')
+                Продукты / {{$title}}
+            @break
+
+            @case('dashboard.products.relations.create')
+                Продукты / {{$title}} / Добавить
+            @break
+
+            @case('dashboard.products.relations.single')
+                Продукты / {{$title}} / Редактировать / {{$item->ru_name}}
+            @break
+
             @case('dashboard.news.index')
                 Новости ({{$itemsCount}})
             @break
@@ -29,6 +41,18 @@
 
             @case('dashboard.news.single')
                 Новости / Редактировать / {{$news->ru_title}}
+            @break
+
+            @case('dashboard.news.categories.index')
+                Новости / Категории
+            @break
+
+            @case('dashboard.news.categories.create')
+                Новости / Категории / Добавить
+            @break
+
+            @case('dashboard.news.categories.single')
+                Новости / Категории / Редактировать
             @break
 
             @case('dashboard.options.index')
@@ -58,16 +82,28 @@
 
             @case('dashboard.index')
                 <a href="{{route('dashboard.products.create')}}">Добавить</a>
-                <a href="{{route('dashboard.products.create')}}">Направления</a>
-                <a href="{{route('dashboard.products.create')}}">Симптомы</a>
-                <a href="{{route('dashboard.products.create')}}">Формы</a>
+                <a href="{{route('dashboard.products.relations.index')}}?model=ProductsCategory">Направления</a>
+                <a href="{{route('dashboard.products.relations.index')}}?model=Symptom">Симптомы</a>
+                <a href="{{route('dashboard.products.relations.index')}}?model=Form">Формы</a>
+                <button onclick="select_all_checkboxes()">Отметить все</button>
+                <button data-bs-toggle="modal" data-bs-target="#remove_items_modal">Удалить отмеченные</button>
+            @break
+
+            @case('dashboard.products.relations.index')
+                <a href="{{route('dashboard.products.relations.create')}}?model={{$model}}">Добавить</a>
                 <button onclick="select_all_checkboxes()">Отметить все</button>
                 <button data-bs-toggle="modal" data-bs-target="#remove_items_modal">Удалить отмеченные</button>
             @break
 
             @case('dashboard.news.index')
                 <a href="{{route('dashboard.news.create')}}">Добавить</a>
-                <a href="{{route('dashboard.news.create')}}">Категории</a>
+                <a href="{{route('dashboard.news.categories.index')}}">Категории</a>
+                <button onclick="select_all_checkboxes()">Отметить все</button>
+                <button data-bs-toggle="modal" data-bs-target="#remove_items_modal">Удалить отмеченные</button>
+            @break
+
+            @case('dashboard.news.categories.index')
+                <a href="{{route('dashboard.news.categories.create')}}">Добавить</a>
                 <button onclick="select_all_checkboxes()">Отметить все</button>
                 <button data-bs-toggle="modal" data-bs-target="#remove_items_modal">Удалить отмеченные</button>
             @break

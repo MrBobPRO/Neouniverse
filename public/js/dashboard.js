@@ -112,10 +112,12 @@ function select_all_checkboxes() {
 
 // initialize JSON Formatter
 function getJson() {
-    try {
-        return JSON.parse($('#json-input').val());
-    } catch (ex) {
-        console.log('Wrong JSON Format: ' + ex);
+    if (document.getElementById('json-input')) {
+        try {
+            return JSON.parse($('#json-input').val());
+        } catch (ex) {
+            console.log('Wrong JSON Format: ' + ex);
+        }
     }
 }
 

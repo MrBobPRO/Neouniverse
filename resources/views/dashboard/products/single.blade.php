@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Форма выпуска <span>*</span></label>
+                    <label>Форма выпуска <span>*</span>{{ $product->form_id == '0' ? '. Отсуствует форма выпуска продукта. Выберите правльную форму из списка!' : '' }}</label>
                     <select class="selectize-singular" name="form_id" required>
                         @foreach ($forms as $form)
                             <option value="{{ $form->id }}" {{ $product->form_id == $form->id ? 'selected' : '' }}>{{ $form->ru_name }}</option>
@@ -72,8 +72,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Симптомы <span>*</span></label>
-                    <select class="selectize-multiple" name="symptoms[]" multiple="multiple" required>
+                    <label>Симптомы</label>
+                    <select class="selectize-multiple" name="symptoms[]" multiple="multiple">
                         @foreach ($symptoms as $symptom)
                             <option value="{{ $symptom->id }}"
                                 @foreach ($product->symptoms as $prodSym)

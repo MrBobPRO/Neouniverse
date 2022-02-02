@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\NewsCategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductsRelationController;
 use App\Http\Controllers\TranslationController;
 
 /*
@@ -49,6 +51,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/products/remove', [ProductController::class, 'remove'])->name('products.remove');
     Route::post('/products/remove-multiple', [ProductController::class, 'removeMultiple'])->name('products.remove.multiple');
 
+    //Product relations
+    Route::get('/dashboard/product/relations', [ProductsRelationController::class, 'dashboardIndex'])->name('dashboard.products.relations.index');
+    Route::get('/dashboard/product/relations/create', [ProductsRelationController::class, 'dashboardCreate'])->name('dashboard.products.relations.create');
+    Route::get('/dashboard/product/relations/{id}', [ProductsRelationController::class, 'dashboardSingle'])->name('dashboard.products.relations.single');
+
+    Route::post('/product/relations/update', [ProductsRelationController::class, 'update'])->name('products.relations.update');
+    Route::post('/product/relations/store', [ProductsRelationController::class, 'store'])->name('products.relations.store');
+    Route::post('/product/relations/remove', [ProductsRelationController::class, 'remove'])->name('products.relations.remove');
+    Route::post('/product/relations/remove-multiple', [ProductsRelationController::class, 'removeMultiple'])->name('products.relations.remove.multiple');
+
     //news
     Route::get('/dashboard/news', [NewsController::class, 'dashboardIndex'])->name('dashboard.news.index');
     Route::get('/dashboard/news/create', [NewsController::class, 'dashboardCreate'])->name('dashboard.news.create');
@@ -59,17 +71,35 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/news/remove', [NewsController::class, 'remove'])->name('news.remove');
     Route::post('/news/remove-multiple', [NewsController::class, 'removeMultiple'])->name('news.remove.multiple');
 
+    //News categories
+    Route::get('/dashboard/news-categories', [NewsCategoryController::class, 'dashboardIndex'])->name('dashboard.news.categories.index');
+    Route::get('/dashboard/news-categories/create', [NewsCategoryController::class, 'dashboardCreate'])->name('dashboard.news.categories.create');
+    Route::get('/dashboard/news-categories/{id}', [NewsCategoryController::class, 'dashboardSingle'])->name('dashboard.news.categories.single');
+
+    Route::post('/news-categories/update', [NewsCategoryController::class, 'update'])->name('news.categories.update');
+    Route::post('/news-categories/store', [NewsCategoryController::class, 'store'])->name('news.categories.store');
+    Route::post('/news-categories/remove', [NewsCategoryController::class, 'remove'])->name('news.categories.remove');
+    Route::post('/news-categories/remove-multiple', [NewsCategoryController::class, 'removeMultiple'])->name('news.categories.remove.multiple');
+
     //options
     Route::get('/dashboard/options', [OptionController::class, 'dashboardIndex'])->name('dashboard.options.index');
     Route::get('/dashboard/options/{id}', [OptionController::class, 'dashboardSingle'])->name('dashboard.options.single');
-
     Route::post('/options/update', [OptionController::class, 'update'])->name('options.update');
 
     //translations
     Route::get('/dashboard/translations', [TranslationController::class, 'dashboardIndex'])->name('dashboard.translations.index');
     Route::get('/dashboard/translations/{tag}', [TranslationController::class, 'dashboardSingle'])->name('dashboard.translations.single');
-
     Route::post('/translations/update', [TranslationController::class, 'update'])->name('translations.update');
+
+    //slider
+    Route::get('/dashboard/slider', [SliderController::class, 'dashboardIndex'])->name('dashboard.index');
+    Route::get('/dashboard/slider/create', [ProductController::class, 'dashboardCreate'])->name('dashboard.products.create');
+    Route::get('/dashboard/slider/{id}', [ProductController::class, 'dashboardSingle'])->name('dashboard.products.single');
+
+    Route::post('/slider/update', [ProductController::class, 'update'])->name('slider.update');
+    Route::post('/slider/store', [ProductController::class, 'store'])->name('slider.store');
+    Route::post('/slider/remove', [ProductController::class, 'remove'])->name('slider.remove');
+    Route::post('/slider/remove-multiple', [ProductController::class, 'removeMultiple'])->name('slider.remove.multiple');
 });
 
 require_once __DIR__.'/auth.php';

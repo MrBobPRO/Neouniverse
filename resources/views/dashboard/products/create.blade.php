@@ -65,8 +65,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Симптомы <span>*</span></label>
-                    <select class="selectize-multiple" name="symptoms[]" multiple="multiple" required>
+                    <label>Симптомы</label>
+                    <select class="selectize-multiple" name="symptoms[]" multiple="multiple">
                         @foreach ($symptoms as $symptom)
                             <option value="{{ $symptom->id }}">{{ $symptom->ru_name }}</option>
                         @endforeach
