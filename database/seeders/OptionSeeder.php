@@ -176,5 +176,37 @@ class OptionSeeder extends Seeder
         $option->ka_value = 'В данном разделе вы найдете корпоративные новости, акции, анонсы, мероприятия, новости отрасли и другие интересные посты и материалы, касающиеся деятельности фармацевтики и здоровья.';
         $option->tag = 'about-news';
         $option->save();
+
+        $option = new Option();
+        $option->key = 'Координаты карты - широта (lat)';
+        $option->ru_value = '38.57949484167983';
+        $option->en_value = '38.57949484167983';
+        $option->ka_value = '38.57949484167983';
+        $option->tag = 'map-lat-coordinates';
+        $option->save();
+
+        $option = new Option();
+        $option->key = 'Координаты карты - долгота (lng)';
+        $option->ru_value = '68.73690763576408';
+        $option->en_value = '68.73690763576408';
+        $option->ka_value = '68.73690763576408';
+        $option->tag = 'map-lng-coordinates';
+        $option->save();
+
+        $option = new Option();
+        $option->key = 'Координаты маркера - широта (lat)';
+        $option->ru_value = '38.578065';
+        $option->en_value = '51.4801308';
+        $option->ka_value = '38.578065';
+        $option->tag = 'marker-lat-coordinates';
+        $option->save();
+
+        $option = new Option();
+        $option->key = 'Координаты маркера - долгота (lng)';
+        $option->ru_value = '68.750778';
+        $option->en_value = '-0.0342077';
+        $option->ka_value = '68.750778';
+        $option->tag = 'marker-lng-coordinates';
+        $option->save();
     }
 }

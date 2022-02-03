@@ -1,4 +1,18 @@
 <footer class="footer">
+    {{-- Initialize map coordinates --}}
+    @php 
+        $mapLatitude = App\Models\Option::where('tag', 'map-lat-coordinates')->first(); 
+        $mapLongitude = App\Models\Option::where('tag', 'map-lng-coordinates')->first(); 
+        $markerLatitude = App\Models\Option::where('tag', 'marker-lat-coordinates')->first();
+        $markerLongitude = App\Models\Option::where('tag', 'marker-lng-coordinates')->first(); 
+    @endphp
+
+    <script>
+        let map_latitude = {{ $mapLatitude[$localedValue]}};
+        let map_longitude = {{ $mapLongitude[$localedValue]}};
+        let marker_latitude = {{ $markerLatitude[$localedValue]}};
+        let marker_longitude = {{ $markerLongitude[$localedValue]}};
+    </script>
 
     <div class="contact-us" id="contact_us">
         <div class="main-container contact-us__inner" style="background-image: url({{ asset('img/main/contact-us-pattern.svg') }})">

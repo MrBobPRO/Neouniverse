@@ -79,8 +79,8 @@ if (map) {
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: {
-                lat: 38.57949484167983,
-                lng: 68.73690763576408
+                lat: map_latitude,
+                lng: map_longitude
             },
             zoom: 14,
             mapTypeControl: false,
@@ -92,8 +92,8 @@ if (map) {
             draggable: false,
             animation: google.maps.Animation.BOUNCE,
             position: {
-                lat: 38.578065,
-                lng: 68.750778
+                lat: marker_latitude,
+                lng: marker_longitude
             },
             icon: '/img/main/marker.svg'
         });
