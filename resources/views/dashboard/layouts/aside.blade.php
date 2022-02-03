@@ -31,6 +31,12 @@
                 </a>
             </li>
 
+            <li>
+                <a class="@if( strpos($route, 'carousel') !== false ) active @endif" href="{{route('dashboard.carousel.index')}}">
+                    <span class="material-icons">collections</span> Слайдер
+                </a>
+            </li>
+
             <li class="aside__nav-li">
                 <form class="aside__form" method="POST" action="{{ route('logout') }}">
                     @csrf

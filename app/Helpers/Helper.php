@@ -18,6 +18,7 @@ class Helper
     const INSTRUCTIONS_PATH = '/instructions';
     const PRODUCTS_PATH = '/img/products';
     const NEWS_PATH = '/img/news';
+    const CAROUSEL_PATH = '/img/carousel';
 
     /**
      * Return transliterated lowercased string from russian or tajik into latin

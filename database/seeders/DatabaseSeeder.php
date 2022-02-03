@@ -33,5 +33,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(SymptomSeeder::class);
         $this->call(FormSeeder::class);
+        $this->call(CarouselSeeder::class);
     }
 }

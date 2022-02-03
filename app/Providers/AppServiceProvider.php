@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Carousel;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
@@ -36,6 +37,10 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer(['layouts.app', 'dashboard.layouts.app'], function ($view) {
             $view->with('route', Route::currentRouteName());
+        });
+
+        View::composer('components.main-carousel', function ($view) {
+            $view->with('carouselItems', Carousel::inRandomOrder()->get());
         });
     }
 }

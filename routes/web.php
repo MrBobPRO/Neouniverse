@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarouselController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\NewsCategoryController;
@@ -92,14 +93,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/translations/update', [TranslationController::class, 'update'])->name('translations.update');
 
     //slider
-    Route::get('/dashboard/slider', [SliderController::class, 'dashboardIndex'])->name('dashboard.index');
-    Route::get('/dashboard/slider/create', [ProductController::class, 'dashboardCreate'])->name('dashboard.products.create');
-    Route::get('/dashboard/slider/{id}', [ProductController::class, 'dashboardSingle'])->name('dashboard.products.single');
+    Route::get('/dashboard/carousel', [CarouselController::class, 'dashboardIndex'])->name('dashboard.carousel.index');
+    Route::get('/dashboard/carousel/create-item', [CarouselController::class, 'dashboardCreate'])->name('dashboard.carousel.create');
+    Route::get('/dashboard/carousel/item/{id}', [CarouselController::class, 'dashboardSingle'])->name('dashboard.carousel.single');
 
-    Route::post('/slider/update', [ProductController::class, 'update'])->name('slider.update');
-    Route::post('/slider/store', [ProductController::class, 'store'])->name('slider.store');
-    Route::post('/slider/remove', [ProductController::class, 'remove'])->name('slider.remove');
-    Route::post('/slider/remove-multiple', [ProductController::class, 'removeMultiple'])->name('slider.remove.multiple');
+    Route::post('/carousel-item/update', [CarouselController::class, 'update'])->name('carousel.update');
+    Route::post('/carousel-item/store', [CarouselController::class, 'store'])->name('carousel.store');
+    Route::post('/carousel-item/remove', [CarouselController::class, 'remove'])->name('carousel.remove');
+    Route::post('/carousel-item/remove-multiple', [CarouselController::class, 'removeMultiple'])->name('carousel.remove.multiple');
 });
 
 require_once __DIR__.'/auth.php';
