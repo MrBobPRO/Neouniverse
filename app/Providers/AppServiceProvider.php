@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Carousel;
+use App\Models\Locale;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Schema;
@@ -41,6 +42,10 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('components.main-carousel', function ($view) {
             $view->with('carouselItems', Carousel::inRandomOrder()->get());
+        });
+
+        View::composer('layouts.header', function ($view) {
+            $view->with('locales', Locale::where('visibility', true)->get());
         });
     }
 }

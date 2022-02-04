@@ -38,28 +38,24 @@
             <span class="material-icons-outlined search__icon">portrait</span> {{ __('Связатся с нами') }}
         </a>  {{-- Contact end --}}
 
-        <div class="dropdown language-dropdown">
-            <button class="dropdown__button">{{ $locale == 'ka' ? 'GE' : $locale }} <span class="material-icons-outlined dropdown__button-icon">expand_more</span></button>
-            <div class="dropdown__content">
-                <form class="dropdown__item" action="{{ route('switchLocale') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="locale" value="ru">
-                    <button class="language-button"><img src="{{ asset('img/main/ru.png') }}"> RU</button>
-                </form>
-
-                <form class="dropdown__item" action="{{ route('switchLocale') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="locale" value="en">
-                    <button class="language-button"><img src="{{ asset('img/main/en.png') }}"> EN</button>
-                </form>
-
-                <form class="dropdown__item" action="{{ route('switchLocale') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="locale" value="ka">
-                    <button class="language-button"><img src="{{ asset('img/main/ka.png') }}"> GE</button>
-                </form>
+        @if(count($locales))
+            <div class="dropdown language-dropdown">
+                <button class="dropdown__button">
+                    {{ $localeShortName = App\Models\Locale::where('value', $locale)->first()->short_name }} 
+                    <span class="material-icons-outlined dropdown__button-icon">expand_more</span>
+                </button>
+                
+                <div class="dropdown__content">
+                    @foreach ($locales as $loc)
+                        <form class="dropdown__item" action="{{ route('locale.switch') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="locale" value="{{ $loc->value }}">
+                            <button class="language-button"><img src="{{ asset('img/main/') . '/' . $loc->image }}"> {{ $loc->short_name }}</button>
+                        </form>
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endif
 
     </div>  {{-- Main container end --}}
 </header>

@@ -26,6 +26,7 @@
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
     {{-- Simditor v2.3.28 --}}
     <link href="{{ asset('js/simditor/styles/simditor.css') }}" rel="stylesheet">
+    {{-- JSON Viewer --}}
     <link href="{{ asset('js/json-viewer/jquery.json-viewer.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
@@ -58,7 +59,7 @@
     <script src="{{ asset('js/simditor/scripts/hotkeys.js') }}"></script>
     <script src="{{ asset('js/simditor/scripts/uploader.js') }}"></script>
     <script src="{{ asset('js/simditor/scripts/simditor.js') }}"></script>
-    {{-- JSON Formatter --}}
+    {{-- JSON Viewer --}}
     <script src="{{ asset('js/json-viewer/jquery.json-viewer.js') }}"></script>
     <script src="{{ asset('js/json-viewer/jquery.json-editor.js') }}"></script>
 

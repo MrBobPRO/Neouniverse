@@ -60,11 +60,4 @@ class MainController extends Controller
         ];
     }
 
-    public function switchLocale(Request $request)
-    {
-        session(['appLocale' => $request->locale]);
-
-        return redirect()->back();
-    }
-
 }

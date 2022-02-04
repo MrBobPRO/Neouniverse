@@ -32,6 +32,12 @@
             </li>
 
             <li>
+                <a class="@if( strpos($route, 'locale') !== false ) active @endif" href="{{route('dashboard.locale.index')}}">
+                    <span class="material-icons">flag</span> Языки
+                </a>
+            </li>
+
+            <li>
                 <a class="@if( strpos($route, 'carousel') !== false ) active @endif" href="{{route('dashboard.carousel.index')}}">
                     <span class="material-icons">collections</span> Слайдер
                 </a>

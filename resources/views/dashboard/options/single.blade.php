@@ -21,7 +21,6 @@
         <textarea class="{{ $option->wysiwyg ? 'simditor-wysiwyg' : 'form-textarea' }}" name="ka_value" required rows="6">{{ $option->ka_value }}</textarea>
     </div>
 
-
     <div class="inner-form__actions">
         <button class="button button--main" type="submit">
             <span class="material-icons-outlined">done_all</span> Сохранить

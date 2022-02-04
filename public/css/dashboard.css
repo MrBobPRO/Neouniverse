@@ -597,3 +597,22 @@ input[type="file"]:after {
     background: white;
 }
 /* Languages Tab end */
+
+
+/* checkbox start */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.checkbox-container label {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* checkbox end */

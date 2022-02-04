@@ -34,5 +34,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SymptomSeeder::class);
         $this->call(FormSeeder::class);
         $this->call(CarouselSeeder::class);
+        $this->call(LocaleSeeder::class);
     }
 }

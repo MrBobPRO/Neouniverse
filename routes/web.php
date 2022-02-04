@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\LocaleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\NewsCategoryController;
@@ -37,7 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/news/ajax-get', [NewsController::class, 'ajaxGet'])->name('news.ajaxGet');
 
     Route::post('/search', [MainController::class, 'search'])->name('search');
-    Route::post('/switch-locale', [MainController::class, 'switchLocale'])->name('switchLocale');
+    Route::post('/switch-locale', [LocaleController::class, 'switch'])->name('locale.switch');
 });
 
 
@@ -101,6 +102,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/carousel-item/store', [CarouselController::class, 'store'])->name('carousel.store');
     Route::post('/carousel-item/remove', [CarouselController::class, 'remove'])->name('carousel.remove');
     Route::post('/carousel-item/remove-multiple', [CarouselController::class, 'removeMultiple'])->name('carousel.remove.multiple');
+
+    //locale
+    Route::get('/dashboard/locale', [LocaleController::class, 'dashboardIndex'])->name('dashboard.locale.index');
+    Route::post('/locales/update/switcher', [LocaleController::class, 'updateSwitcher'])->name('locale.update.switcher');
 });
 
 require_once __DIR__.'/auth.php';

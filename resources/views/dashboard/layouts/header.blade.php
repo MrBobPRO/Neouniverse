@@ -76,6 +76,11 @@
                 Переводы / Редактировать / {{$tag}}
             @break
 
+            {{-- Locale --}}
+            @case('dashboard.locale.index')
+                Переключатель языков
+            @break
+
         @endswitch
     </h1> {{-- Header Title end --}}
 
