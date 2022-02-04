@@ -211,6 +211,7 @@ input[type="file"]:after {
 }
 .alert-success {
     color: black;
+    background: #c3edc5;
 }
 /*-------------------------Alert end-------------------------*/
 

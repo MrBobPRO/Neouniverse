@@ -58,19 +58,14 @@
 
                 {{-- Actions start --}}
                 <div class="product-content__actions">
-                    <form action="{{ route('products.downloadInstructions') }}" method="POST">
-                        @csrf
-                        <input type="hidden" value="{{ $product->id }}" name="id">
+                    <a href="{{ asset('instructions') . '/' . $product[$locale . '_instruction'] }}" class="action" target="blank">
+                        <span class="material-icons-outlined action__icon">file_download</span>
 
-                        <button class="action">
-                            <span class="material-icons-outlined action__icon">file_download</span>
-
-                            <div class="action__div">
-                                <h6 class="action__title">{{ __('Скачать') }}</h6>
-                                <p class="action__text">{{ __('инструкцию') }}</p>
-                            </div>
-                        </button>
-                    </form>
+                        <div class="action__div">
+                            <h6 class="action__title">{{ __('Скачать') }}</h6>
+                            <p class="action__text">{{ __('инструкцию') }}</p>
+                        </div>
+                    </a>
                     
                     <a href="{{ $product[$locale . '_obtain_link'] }}" class="action" target="_blank">
                         <span class="material-icons-outlined action__icon">shopping_cart</span>
