@@ -18,6 +18,7 @@ class CreateNewsCategoriesTable extends Migration
             $table->string('ru_name');
             $table->string('en_name');
             $table->string('ka_name');
+            $table->boolean('highlight_in_filter')->default(0);
             $table->timestamps();
         });
     }

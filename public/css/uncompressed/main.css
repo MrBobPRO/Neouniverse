@@ -135,12 +135,19 @@ button {
 .navbar__link {
     color: #1D1D1D;
     font-size: 16px;
-    padding: 10px 24px;
+    padding: 10px 16px;
     border-radius: 100px;
+    position: relative;
 }
-.navbar__link--active {
-    color: white;
+.navbar__link--active:after {
+    content: '';
+    width: 6px;
+    height: 6px;
     background: var(--main-color);
+    position: absolute;
+    bottom: -4px;
+    left: calc(50% - 3px);
+    border-radius: 50%;
 }
 .header__contact-us {
     display: flex;
@@ -149,11 +156,9 @@ button {
     padding: 13px 32px;
     color: white;
     background-color: var(--main-color);
+    /* box-shadow: 0px 4px 10px var(--main-color); */
     border-radius: 25px;
     border: none;
-}
-.header__contact-us--shadowed {
-    box-shadow: 0px 4px 10px var(--main-color);
 }
 /* Header end */
 
@@ -276,18 +281,24 @@ button {
     align-items: flex-end;
     gap: 120px;
 }
+.contact-us__email {
+    display: flex;
+    flex-direction: column;
+}
+.contact-us__text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.contact-us__label {
+    color: white;
+}
 .contact-us__input {
-    padding: 0 0 24px;
+    padding: 10px 0;
     color: white;
     background-color: transparent;
     border: none;
     border-bottom: 2px solid white;
-}
-.contact-us__input::placeholder {
-    color: white;
-}
-.contact-us__input--grow {
-    flex-grow: 1;
 }
 .footer-map {
     position: relative;
@@ -640,7 +651,10 @@ button {
 .search__input:not([value=""]) + .filter__search-label {
     display:none;
 }
-.filter__search-label .filter__search-placeholder {
+.filter__search-placeholder {
+    pointer-events: auto;
+}
+.filter__search-placeholder a {
     color: var(--main-color);
 }
 .filter__search .search__button {

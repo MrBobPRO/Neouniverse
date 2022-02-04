@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
 
             $table->string('url')->unique();
             $table->boolean('prescription'); //RX or OTC
+            $table->boolean('highlight_in_filter')->default(0);
             $table->integer('form_id');
             
             $table->string('ru_image');

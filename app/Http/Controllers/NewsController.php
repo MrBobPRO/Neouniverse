@@ -22,8 +22,12 @@ class NewsController extends Controller
 
         $locale = App::currentLocale();
         $categories = NewsCategory::orderBy($locale . '_name', 'asc')->get();
+        $highlightedCategories = NewsCategory::where('highlight_in_filter', true)
+            ->select($locale . '_name as name', 'id')
+            ->orderBy('name', 'asc')
+            ->get();
 
-        return view('news.index', compact('news', 'newsCount', 'categories', 'request'));
+        return view('news.index', compact('news', 'newsCount', 'categories', 'request', 'highlightedCategories'));
     }
 
     public function single($url)

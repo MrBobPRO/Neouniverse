@@ -16,12 +16,24 @@
         {{-- Search start --}}
         <div class="search filter__search">
             <input type="text" class="search__input" name="keyword" value="{{ $request->keyword }}" id="products_filter_search">
+            
             <label class="filter__search-label">{{ __('По названию или веществу') }}
                 {{-- first span is used to minify placeholder text on mobile (is hidden on mobile) --}}
                 <span>, {{ __('например') }}</span>
                 {{-- second span is used to colorize placeholder (is hidden on mobile) --}}
-                <span class="filter__search-placeholder">{{ __('Амброксол, Аргумел Коби, М2-Гино') }}</span>
+                @if(count($highlightedProducts))
+                    <span class="filter__search-placeholder">
+                        @foreach ($highlightedProducts as $product)
+                            @if($loop->last)
+                                <a href="{{ route('products.single', $product->url) }}">{{ $product->name }}</a>
+                            @else
+                                <a href="{{ route('products.single', $product->url) }}">{{ $product->name }},</a>
+                            @endif
+                        @endforeach
+                    </span>
+                @endif
             </label>
+
             <button type="button" class="search__button">
                 <span class="material-icons-outlined search__icon">search</span>
             </button>

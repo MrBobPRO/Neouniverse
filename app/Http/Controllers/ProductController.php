@@ -26,8 +26,12 @@ class ProductController extends Controller
         $categories = ProductsCategory::orderBy($locale . '_name', 'asc')->get();
         $symptoms = Symptom::orderBy($locale . '_name', 'asc')->get();
         $forms = Form::orderBy($locale . '_name', 'asc')->get();
+        $highlightedProducts = Product::where('highlight_in_filter', true)
+                ->select($locale . '_name as name', 'url')
+                ->orderBy('name', 'asc')
+                ->get();
 
-        return view('products.index', compact('products', 'productsCount', 'categories', 'symptoms', 'forms', 'request'));
+        return view('products.index', compact('products', 'productsCount', 'categories', 'symptoms', 'forms', 'request', 'highlightedProducts'));
     }
 
     public function single($url)
@@ -173,6 +177,7 @@ class ProductController extends Controller
 
         $product->url = Helper::transliterateIntoLatin($request->ru_name);
         $product->prescription = $request->prescription;
+        $product->highlight_in_filter = $request->highlight_in_filter;
         $product->form_id = $request->form_id;
 
         Helper::uploadFiles($request, $product, 'instruction', Helper::INSTRUCTIONS_PATH, false);
@@ -205,6 +210,7 @@ class ProductController extends Controller
 
         $product->url = Helper::transliterateIntoLatin($request->ru_name);
         $product->prescription = $request->prescription;
+        $product->highlight_in_filter = $request->highlight_in_filter;
         $product->form_id = $request->form_id;
 
         Helper::uploadFiles($request, $product, 'instruction', Helper::INSTRUCTIONS_PATH, false);

@@ -44,6 +44,10 @@ class ProductSeeder extends Seeder
             $product->url = Helper::transliterateIntoLatin($name[$i]);
             $product->prescription = rand(0,1);
             $product->form_id = rand(1,8);
+            if($i < 3) {
+                $product->highlight_in_filter = true;
+            }
+            $product->form_id = rand(1,8);
 
             $product->ru_image = Helper::transliterateIntoLatin($name[$i]) . '.png';
             $product->en_image = Helper::transliterateIntoLatin($name[$i]) . '.png';

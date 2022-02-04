@@ -16,7 +16,17 @@
             {{-- first span is used to minify placeholder text on mobile (is hidden on mobile) --}}
             <span>, {{ __('например') }}</span>
             {{-- second span is used to colorize placeholder (is hidden on mobile) --}}
-            <span class="filter__search-placeholder">{{ __('Нанотехнологии, Эпидемиология, Полезные советы') }}</span>
+            @if(count($highlightedCategories))
+                <span class="filter__search-placeholder">
+                    @foreach ($highlightedCategories as $category)
+                        @if($loop->last)
+                            <a href="{{ route('news.index', ['category_id' => $category->id]) }}#news_filter_form">{{ $category->name }}</a>
+                        @else
+                            <a href="{{ route('news.index', ['category_id' => $category->id]) }}#news_filter_form">{{ $category->name }},</a>
+                        @endif
+                    @endforeach
+                </span>
+            @endif
         </label>
         <button type="button" class="search__button">
             <span class="material-icons-outlined search__icon">search</span>

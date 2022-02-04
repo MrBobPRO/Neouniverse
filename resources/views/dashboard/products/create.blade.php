@@ -47,6 +47,17 @@
                 </div>
 
                 <div class="form-group">
+                    <label>
+                        Показать в строке фильтра/поиска продуктов, как ключевое слово, на <a href="{{ route('products.index') }}" target="_blank">главной странице продуктов</a> ? <span>*</span>. Не рекомендуется добавлять больше 3 продуктов в строке фильтра/поиска !
+                    </label>
+                    
+                    <select class="selectize-singular" name="highlight_in_filter" required>
+                        <option value="0">Нет</option>
+                        <option value="1">Да</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
                     <label>Форма выпуска <span>*</span></label>
                     <select class="selectize-singular" name="form_id" required>
                         @foreach ($forms as $form)

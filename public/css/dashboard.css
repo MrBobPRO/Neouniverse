@@ -209,6 +209,9 @@ input[type="file"]:after {
     margin: 0;
     padding: 15px 20px;
 }
+.alert-success {
+    color: black;
+}
 /*-------------------------Alert end-------------------------*/
 
 

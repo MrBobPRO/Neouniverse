@@ -39,6 +39,7 @@ class NewsCategoryController extends Controller
 
         $category = new NewsCategory();
         Helper::fillMultiLanguageFields($request, $category, ['name']);
+        $category->highlight_in_filter = $request->highlight_in_filter;
         $category->save();
 
         return redirect()->route('dashboard.news.categories.index');
@@ -48,6 +49,7 @@ class NewsCategoryController extends Controller
     {
         $category = NewsCategory::find($request->id);
         Helper::fillMultiLanguageFields($request, $category, ['name']);
+        $category->highlight_in_filter = $request->highlight_in_filter;
         $category->save();
 
         return redirect()->back();

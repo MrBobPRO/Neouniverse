@@ -21,6 +21,17 @@
         <input class="form-input" name="ka_name" type="text" value="{{ $category->ka_name }}">
     </div>
 
+    <div class="form-group">
+        <label>
+            Показать в строке фильтра/поиска новостей, как ключевое слово, на <a href="{{ route('news.index') }}" target="_blank">главной странице новостей</a> ? <span>*</span>. Не рекомендуется добавлять больше 3 категорий в строке фильтра/поиска !
+        </label>
+        
+        <select class="selectize-singular" name="highlight_in_filter" required>
+            <option value="0" {{ !$category->highlight_in_filter ? 'selected' : '' }}>Нет</option>
+            <option value="1" {{ $category->highlight_in_filter ? 'selected' : '' }}>Да</option>
+        </select>
+    </div>
+
     <div class="inner-form__actions">
         <button class="button button--main" type="submit">
             <span class="material-icons-outlined">done_all</span> Сохранить

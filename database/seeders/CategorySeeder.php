@@ -26,13 +26,16 @@ class CategorySeeder extends Seeder
         }
 
 
-        $newsCat = ['Нанотехнологии', 'Полезные советы', 'Здоровый образ жизни', 'Укрепление иммунитета', 'Психотерапия', 'Covid 19', 'Эпидемиология', 'Спецпроекты'];
+        $newsCat = ['Нанотехнологии', 'Полезные советы', 'Covid 19', 'Здоровый образ жизни', 'Укрепление иммунитета', 'Психотерапия', 'Эпидемиология', 'Спецпроекты'];
 
         for($i = 0; $i < count($newsCat); $i++) {
             $category = new NewsCategory();
             $category->ru_name = $newsCat[$i];
             $category->en_name = $newsCat[$i];
             $category->ka_name = $newsCat[$i];
+            if($i < 3) {
+                $category->highlight_in_filter = true;
+            }
             $category->save();
         }
     }
