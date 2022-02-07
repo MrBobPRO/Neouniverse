@@ -1,5 +1,22 @@
 @extends('layouts.app')
 
+@section("title", $new[$locale . '_title'])
+
+@section("meta-tags")
+    @php
+        //remove tags and slice body
+        $shareText = preg_replace('#<[^>]+>#', ' ', $new[$locale . '_body']);
+        $shareText = mb_strlen($shareText) < 170 ? $shareText : mb_substr($shareText, 0, 166) . '...';
+    @endphp
+    <meta name="description" content="{{ $shareText }}">
+    <meta property="og:description" content="{{ $shareText }}">
+    <meta property="og:title" content="{{ $new[$locale . '_title'] }}" />
+    <meta property="og:image" content="{{ asset('img/news/thumbs/' . $new[$locale . '_image']) }}">
+    <meta property="og:image:alt" content="{{ $new[$locale . '_title'] }}">
+    <meta name="twitter:title" content="{{ $new[$locale . '_title'] }}">
+    <meta name="twitter:image" content="{{ asset('img/news/thumbs/' . $new[$locale . '_image']) }}">
+@endsection
+
 @section('main')
 <main class="main single-news" id="main" role="main">
     {{-- Breadcrumbs start --}}

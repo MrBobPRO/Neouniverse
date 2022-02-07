@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', __('Продукты'))
+
 @section('main')
 <main class="main products" id="main" role="main">
     <x-main-carousel/>

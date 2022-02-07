@@ -245,6 +245,7 @@ input[type="file"]:after {
     padding: 0 30px 0 20px;
     z-index: 20;
     box-shadow: 0 0 10px 0 #272c4a42;
+    border-left: 1px solid #ddd;
     background: white;
     transition: transform 0.2s cubic-bezier(0.4,0,0.2,1), background-color 0.2s cubic-bezier(0.4,0,0.2,1), left 0.2s cubic-bezier(0.4,0,0.2,1), right 0.2s cubic-bezier(0.4,0,0.2,1), box-shadow 0.28s cubic-bezier(0.4,0,0.2,1), max-width 0.25s cubic-bezier(0.4,0,0.2,1), width 0.25s cubic-bezier(0.4,0,0.2,1);
 }
@@ -304,7 +305,6 @@ input[type="file"]:after {
     color: white;
     z-index: 20;
     background: #4a5864;
-    border-right: 1px solid #ddd;
     transition-duration: 0.2s;
     transition-timing-function: cubic-bezier(0.4,0,0.2,1);
     transition-property: transform, visibility, width;
@@ -314,11 +314,14 @@ input[type="file"]:after {
 }
 .aside__logo {
     display: flex;
-    padding: 0px 25px 10px;
+    align-items: center;
+    justify-content: center;
+    height: 58px;
+    padding: 10px;
     background: white;
 }
 .aside__logo img {
-    width: 100%;
+    width: 75%;
 }
 .aside__avatar {
     display: flex;
@@ -616,3 +619,77 @@ input[type="file"]:after {
     user-select: none;
 }
 /* checkbox end */
+
+@media screen and (max-width: 1600px) {
+    body {
+        font-size: 14px;
+    }
+    .aside {
+        max-width: 170px;
+    }
+    .content--max .aside {
+        transform: translateX(-170px);
+    }
+    .aside__logo {
+        height: 52px;
+    }
+    .aside__nav li a {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    .header {
+        left: 170px;
+        height: 52px;
+        padding: 0 20px 0 14px
+    }
+    .aside-toggler {
+        padding: 8px;
+        font-size: 22px;
+    }
+    .header__title {
+        font-size: 15px;
+        margin-left: 10px;
+    }
+    .main {
+        padding: 52px 0 50px 170px;
+    }
+    .content--max .main {
+        padding: 52px 0 0;
+    }
+    .selectize-input {
+        padding: 8px 12px;
+    }
+    .selectize-dropdown .option {
+        padding: 5px 12px;
+        font-size: 14px;
+    }
+    .main-list {
+        padding-top: 10px;
+    }
+    .titles {
+        font-size: 14px;
+        padding: 8px 8px 8px 40px;
+    }
+    .titles__actions {
+        min-width: 120px;
+    }
+    .list__item {
+        font-size: 14px;
+        padding: 8px;
+    }
+    .list__item-actions {
+        min-width: 120px;
+    }
+    .actions__button {
+        padding: 5px;
+    }
+    .inner-form {
+        gap: 20px;
+    }
+    .form-group {
+        padding: 15px 20px 20px;
+    }
+    .form-input, .form-textarea {
+        font-size: 14px;
+    }
+}

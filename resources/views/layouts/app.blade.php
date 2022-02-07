@@ -19,6 +19,33 @@
     <meta name="googlebot" content="noindex, nofollow" />
     <meta name="yandex" content="none">
 
+    {{-----------Meta tags start--------- --}}
+    {{-- Same metas for all routes --}}
+    <meta name="keywords" content="Neo universe, Нео Юниверс, здоровье, фармкомпания, препарат, медицина, лечение, медицинские новости, health, medicine, medical news, health - new opportunities, Здоровье – новые возможности"/>
+    <meta property="og:site_name" content="Neo Universe">
+    <meta property="og:type" content="object" />
+    <meta name="twitter:card" content="summary_large_image">
+
+    @hasSection ('meta-tags')
+        @yield('meta-tags')
+    @else
+        @php $shareText = App\Models\Option::where('tag', 'share-text')->first(); @endphp
+        <meta name="description" content="{{ $shareText[$localedValue] }}">
+        <meta property="og:description" content="{{ $shareText[$localedValue] }}">
+        <meta property="og:title" content="Neo Universe" />
+        <meta property="og:image" content="{{ asset('img/main/logo-share.png') }}">
+        <meta property="og:image:alt" content="Neo universe logo">
+        <meta name="twitter:title" content="Neo Universe">
+        <meta name="twitter:image" content="{{ asset('img/main/logo-share.png') }}">
+    @endif
+    {{----------- Meta tags end-----------}}
+
+    {{-- Favicons for all devices --}}
+    <link rel="icon" href="{{ asset('img/main/cropped-favicon-32x32.png') }}" sizes="32x32">
+    <link rel="icon" href="{{ asset('img/main/cropped-favicon-192x192.png') }}" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('img/main/cropped-favicon-180x180.png') }}">
+    <meta name="msapplication-TileImage" content="{{ asset('img/main/cropped-favicon-270x270.png') }}">
+
     {{-- Roboto Google fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

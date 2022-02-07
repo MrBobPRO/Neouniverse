@@ -5,7 +5,7 @@
         @foreach ($carouselItems as $item)
             <div class="main-carousel__item">
                 <div class="main-carousel__item-inner">
-                    <img class="main-carousel__image" src="{{ asset('img/carousel/' . $item[$locale . '_image']) }}">
+                    <img class="main-carousel__image" src="{{ asset('img/carousel/' . $item[$locale . '_image']) }}" alt="{{ $item[$locale . '_title'] }}">
 
                     <div class="main-carousel__text">
                         <h1 class="main-carousel__title">{{ $item[$locale . '_title'] }}</h1>
