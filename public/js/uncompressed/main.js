@@ -13,14 +13,22 @@ if (main_carousel) {
     main_carousel.owlCarousel({
         loop: true,
         margin: 30,
-        autoplay: false,
         // autoplaySpeed: 2000,
         // autoplayTimeout: 8000,
         nav: false,
         dots: false,
-        items: 3,
-        autoWidth: true,
-        center: true
+        center: true,
+        responsive: {
+            0 : {
+                autoWidth: false,
+                items: 1,
+                autoplay: true
+            },
+            991 : {
+                autoWidth: true,
+                autoplay: false
+            },
+        }
     });
 
     // Owl carousel navigations
@@ -47,10 +55,18 @@ if (products_carousel) {
     products_carousel.owlCarousel({
         loop: true,
         margin: 30,
-        autoplay: false,
         nav: false,
         dots: false,
-        items: 4
+        responsive: {
+            0: {
+                items: 1,
+                autoplay: true,
+            },
+            991: {
+                items: 4,
+                autoplay: false,
+            }
+        }
     });
 
     // Owl carousel navigations
@@ -157,8 +173,8 @@ $('.products__filter-select').selectric({
     maxHeight: 300,
     keySearchTimeout: 500,
     arrowButtonMarkup: '<button class="selectric-button" type="button"><span class="material-icons-outlined">chevron_right</span></button>',
-    disableOnMobile: true,
-    nativeOnMobile: true,
+    disableOnMobile: false,
+    nativeOnMobile: false,
     openOnFocus: true,
     openOnHover: false,
     hoverIntentTimeout: 500,
@@ -222,8 +238,8 @@ $('.news__filter-select').selectric({
     maxHeight: 300,
     keySearchTimeout: 500,
     arrowButtonMarkup: '<button class="selectric-button" type="button"><span class="material-icons-outlined">chevron_right</span></button>',
-    disableOnMobile: true,
-    nativeOnMobile: true,
+    disableOnMobile: false,
+    nativeOnMobile: false,
     openOnFocus: true,
     openOnHover: false,
     hoverIntentTimeout: 500,

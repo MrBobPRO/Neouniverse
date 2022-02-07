@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Изображение <span>*</span></label>
+                    <label>Изображение.<span>*</span>  Рекомендуемый размер 1300x500 px</label>
                     <input class="form-input" name="ru_image" type="file" accept=".png, .jpg, .jpeg" value="{{ old('ru_image') }}" required>
                 </div>
 
@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Изображение</label>
+                    <label>Изображение. Рекомендуемый размер 1300x500 px</label>
                     <input class="form-input" name="en_image" type="file" accept=".png, .jpg, .jpeg" value="{{ old('en_image') }}">
                 </div>
 
@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Изображение</label>
+                    <label>Изображение. Рекомендуемый размер 1300x500 px</label>
                     <input class="form-input" name="ka_image" type="file" accept=".png, .jpg, .jpeg" value="{{ old('ka_image') }}">
                 </div>
 

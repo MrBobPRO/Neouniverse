@@ -180,7 +180,7 @@ class OptionSeeder extends Seeder
         $option = new Option();
         $option->key = 'Координаты карты - широта (lat)';
         $option->ru_value = '38.57949484167983';
-        $option->en_value = '38.57949484167983';
+        $option->en_value = '51.48123996011628';
         $option->ka_value = '38.57949484167983';
         $option->tag = 'map-lat-coordinates';
         $option->save();
@@ -188,7 +188,7 @@ class OptionSeeder extends Seeder
         $option = new Option();
         $option->key = 'Координаты карты - долгота (lng)';
         $option->ru_value = '68.73690763576408';
-        $option->en_value = '68.73690763576408';
+        $option->en_value = '-0.053905842364022294';
         $option->ka_value = '68.73690763576408';
         $option->tag = 'map-lng-coordinates';
         $option->save();

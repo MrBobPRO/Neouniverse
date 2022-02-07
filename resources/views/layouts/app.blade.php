@@ -64,6 +64,7 @@
     <link rel="stylesheet" href="{{ asset('css/uncompressed/about.css') }}">
     <link rel="stylesheet" href="{{ asset('css/uncompressed/products.css') }}">
     <link rel="stylesheet" href="{{ asset('css/uncompressed/news.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/uncompressed/media.css') }}">
 </head>
 
 <body>

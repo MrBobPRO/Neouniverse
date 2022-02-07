@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Изображение <span>*</span></label>
+                    <label>Изображение <span>*</span>. Рекомендуемый размер 1300x500 px</label>
                     <input class="form-input" name="ru_image" type="file" accept=".png, .jpg, .jpeg">
 
                     <a class="form-group__image-container" href="{{ asset('img/news/' . $news->ru_image)}}" target="_blank">
@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Изображение</label>
+                    <label>Изображение. Рекомендуемый размер 1300x500 px</label>
                     <input class="form-input" name="en_image" type="file" accept=".png, .jpg, .jpeg">
 
                     <a class="form-group__image-container" href="{{ asset('img/news/' . $news->en_image)}}" target="_blank">
@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Изображение</label>
+                    <label>Изображение. Рекомендуемый размер 1300x500 px</label>
                     <input class="form-input" name="ka_image" type="file" accept=".png, .jpg, .jpeg">
 
                     <a class="form-group__image-container" href="{{ asset('img/news/' . $news->ka_image)}}" target="_blank">
