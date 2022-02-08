@@ -2,7 +2,7 @@
 @section("main")
 
 <div class="alert alert-success">
-    Во избежания ошибок, как минимум 1 продукт должен существовать !
+    Во избежания ошибок, как минимум 1 слайд должен существовать !
 </div>
 
 {{-- List start --}}
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="list__item-block">{{ $item->ru_title }}</div>
-                <div class="list__item-block">{{ $item->product->ru_name }}</div>
+                <div class="list__item-block">{{ $item->product->ru_name ?? 'Продукт был удалён'}}</div>
 
                 <div class="list__item-actions">
                     <a class="actions__button button--main" href="{{ route('home') }}"

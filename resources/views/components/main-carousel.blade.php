@@ -11,7 +11,7 @@
                         <h1 class="main-carousel__title">{{ $item[$locale . '_title'] }}</h1>
                         <p class="main-carousel__description">{{ $item[$locale . '_description'] }}</p>
                         <div class="button_style_more main-carousel__button">
-                            <a href="{{ route('products.single', $item->product->url) }}">{{ __('Подробнее') }}
+                            <a href="{{ route('products.single', $item->product->url ?? '#') }}">{{ __('Подробнее') }}
                                 <span class="material-icons-outlined">arrow_forward</span>
                             </a>
                         </div>

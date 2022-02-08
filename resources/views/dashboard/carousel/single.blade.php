@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Ссылка на продукт <span>*</span></label>
+                    <label>Ссылка на продукт <span>*</span> {{ $item->product ? '' : 'Ссылка на продукт отсуствует. Пожалуйста выберите новую ссылку для слайдера !' }}</label>
                     <select class="selectize-singular" name="product_id" required>
                         @foreach ($products as $product)
                             <option value="{{ $product->id }}" {{$product->id == $item->product_id ? 'selected' : ''}}>{{ $product->ru_name }}</option>
