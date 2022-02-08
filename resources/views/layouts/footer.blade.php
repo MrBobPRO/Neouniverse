@@ -18,7 +18,9 @@
         <div class="main-container contact-us__inner" style="background-image: url({{ asset('img/main/contact-us-pattern.svg') }})">
             <h1 class="main-title contact-us__title">{{ __('Свяжитесь с нами') }}!</h1>
 
-            <form action="#" class="contact-us__form">
+            <form action="{{ route('email.feedback') }}" method="POST" class="contact-us__form">
+                @csrf
+
                 <div class="contact-us__email">
                     <label class="contact-us__label" for="feedback-email">{{ __('Почта') }}</label>
                     <input type="text" name="email" id="feedback-email"  class="contact-us__input">
@@ -26,7 +28,7 @@
 
                 <div class="contact-us__text">
                     <label class="contact-us__label" for="feedback-text">{{ __('Как мы можем Вам помочь') }}?</label>
-                    <input type="text" id="feedback-text" class="contact-us__input">
+                    <input type="text" name="text" id="feedback-text" class="contact-us__input">
                 </div>
 
                 <div class="button_style_more contact-us__submit">

@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('/search', [MainController::class, 'search'])->name('search');
     Route::post('/switch-locale', [LocaleController::class, 'switch'])->name('locale.switch');
+    Route::post('/email-feedback', [MainController::class, 'emailFeedback'])->name('email.feedback');
 });
 
 

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Feedback;
 use App\Models\News;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use stdClass;
+use Illuminate\Support\Facades\Mail;
 
 class MainController extends Controller
 {
@@ -58,6 +59,13 @@ class MainController extends Controller
             'productsUrl' => route('products.index'),
             'newsUrl' => route('news.index')
         ];
+    }
+
+    public function emailFeedback(Request $request)
+    {
+        Mail::to('boburjon_n@mail.ru')->send(new Feedback($request));
+
+        return redirect()->back();
     }
 
 }
