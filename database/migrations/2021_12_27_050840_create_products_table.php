@@ -33,9 +33,9 @@ class CreateProductsTable extends Migration
             $table->string('en_instruction');
             $table->string('ka_instruction');
 
-            $table->string('ru_obtain_link');
-            $table->string('en_obtain_link');
-            $table->string('ka_obtain_link');
+            $table->string('ru_obtain_link')->nullable();
+            $table->string('en_obtain_link')->nullable();
+            $table->string('ka_obtain_link')->nullable();
 
             $table->text('ru_amount'); //10 tablets, 5 ml etc
             $table->text('en_amount');

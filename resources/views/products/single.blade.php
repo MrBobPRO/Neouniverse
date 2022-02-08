@@ -84,6 +84,7 @@
                         </div>
                     </a>
                     
+                    @if($product[$locale . '_obtain_link'] != '')
                     <a href="{{ $product[$locale . '_obtain_link'] }}" class="action" target="_blank">
                         <span class="material-icons-outlined action__icon">shopping_cart</span>
 
@@ -92,6 +93,7 @@
                             <p class="action__text">{{ __('препарат') }}</p>
                         </div>
                     </a>
+                    @endif
                 </div> {{-- Actions end --}}
 
                 {{-- Accordion start --}}

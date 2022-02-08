@@ -205,7 +205,12 @@ class ProductController extends Controller
 
         if(count($validationErrors) > 0) return back()->withInput()->withErrors($validationErrors);
 
-        $multiLanguageFields = ['name', 'obtain_link', 'amount', 'description', 'composition', 'testimony', 'use'];
+        $multiLanguageFields = ['name', 'amount', 'description', 'composition', 'testimony', 'use'];
+        //obrain_link is nullable
+        $product->ru_obtain_link = $request->ru_obtain_link;
+        $product->en_obtain_link = $request->en_obtain_link;
+        $product->ka_obtain_link = $request->ka_obtain_link;
+
         Helper::fillMultiLanguageFields($request, $product, $multiLanguageFields);
 
         $product->url = Helper::transliterateIntoLatin($request->ru_name);

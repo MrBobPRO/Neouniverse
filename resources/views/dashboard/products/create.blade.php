@@ -95,8 +95,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Ссылка на приобретение препарата <span>*</span>. Полная ссылка включая https или http</label>
-                    <input class="form-input" name="ru_obtain_link" type="text" placeholder="https://salomat.tj/" value="{{ old('ru_obtain_link') }}" required>
+                    <label>Ссылка на приобретение препарата. Полная ссылка включая https или http</label>
+                    <input class="form-input" name="ru_obtain_link" type="text" placeholder="https://salomat.tj/" value="{{ old('ru_obtain_link') }}">
                 </div>
 
                 <div class="form-group">
