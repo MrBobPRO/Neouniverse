@@ -22,25 +22,23 @@ use App\Http\Controllers\TranslationController;
 |
 */
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', [MainController::class, 'home'])->name('home');
-    Route::get('/about-us', [MainController::class, 'aboutUs'])->name('aboutUs');
-    
-    //products
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-    Route::get('/products/{url}', [ProductController::class, 'single'])->name('products.single');
-    Route::post('/products/ajax-get', [ProductController::class, 'ajaxGet'])->name('products.ajaxGet');
-    Route::post('/products/download-instructions', [ProductController::class, 'downloadInstructions'])->name('products.downloadInstructions');
+Route::get('/', [MainController::class, 'home'])->name('home');
+Route::get('/about-us', [MainController::class, 'aboutUs'])->name('aboutUs');
 
-    //news 
-    Route::get('/news', [NewsController::class, 'index'])->name('news.index');
-    Route::get('/news/{url}', [NewsController::class, 'single'])->name('news.single');
-    Route::post('/news/ajax-get', [NewsController::class, 'ajaxGet'])->name('news.ajaxGet');
+//products
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{url}', [ProductController::class, 'single'])->name('products.single');
+Route::post('/products/ajax-get', [ProductController::class, 'ajaxGet'])->name('products.ajaxGet');
+Route::post('/products/download-instructions', [ProductController::class, 'downloadInstructions'])->name('products.downloadInstructions');
 
-    Route::post('/search', [MainController::class, 'search'])->name('search');
-    Route::post('/switch-locale', [LocaleController::class, 'switch'])->name('locale.switch');
-    Route::post('/email-feedback', [MainController::class, 'emailFeedback'])->name('email.feedback');
-});
+//news 
+Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/{url}', [NewsController::class, 'single'])->name('news.single');
+Route::post('/news/ajax-get', [NewsController::class, 'ajaxGet'])->name('news.ajaxGet');
+
+Route::post('/search', [MainController::class, 'search'])->name('search');
+Route::post('/switch-locale', [LocaleController::class, 'switch'])->name('locale.switch');
+Route::post('/email-feedback', [MainController::class, 'emailFeedback'])->name('email.feedback');
 
 
 Route::group(['middleware' => 'auth'], function () {
