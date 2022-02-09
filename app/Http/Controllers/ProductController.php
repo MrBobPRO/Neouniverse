@@ -108,15 +108,6 @@ class ProductController extends Controller
         return $products;
     }
 
-    public function downloadInstructions(Request $request)
-    {
-        $product = Product::find($request->id);
-        $locale = App::currentLocale();
-        $instruction = public_path('instructions/' . $locale . '/' . $product[$locale . '_instruction']);
-
-        return response()->download($instruction, $product[$locale . '_instruction']);
-    }
-
     public function dashboardIndex(Request $request)
     {
         //used in search

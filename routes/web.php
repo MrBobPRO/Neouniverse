@@ -29,7 +29,6 @@ Route::get('/about-us', [MainController::class, 'aboutUs'])->name('aboutUs');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{url}', [ProductController::class, 'single'])->name('products.single');
 Route::post('/products/ajax-get', [ProductController::class, 'ajaxGet'])->name('products.ajaxGet');
-Route::post('/products/download-instructions', [ProductController::class, 'downloadInstructions'])->name('products.downloadInstructions');
 
 //news 
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
