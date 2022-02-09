@@ -20,12 +20,6 @@ class DatabaseSeeder extends Seeder
         $user->email = 'admin@mail.ru';
         $user->password = bcrypt('12345');
         $user->save();
-        if (4 > 1) {
-            $q = "adad";
-        }   elseif (4 < 1) {
-            
-        }
-
 
         $this->call(ProductSeeder::class);
         $this->call(NewsSeeder::class);
