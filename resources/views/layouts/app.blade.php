@@ -59,12 +59,13 @@
     {{-- Selectric --}}
     <link rel="stylesheet" href="{{ asset('js/selectric/selectric.css') }}">
     {{-- Styles --}}
-    <link rel="stylesheet" href="{{ asset('css/uncompressed/main.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/minified/app.css') }}">    
+    {{-- <link rel="stylesheet" href="{{ asset('css/uncompressed/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/uncompressed/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/uncompressed/about.css') }}">
     <link rel="stylesheet" href="{{ asset('css/uncompressed/products.css') }}">
     <link rel="stylesheet" href="{{ asset('css/uncompressed/news.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/uncompressed/media.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/uncompressed/media.css') }}"> --}}
 </head>
 
 <body>

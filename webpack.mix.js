@@ -11,8 +11,18 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-]);
+mix.styles([
+    'public/css/uncompressed/main.css',
+    'public/css/uncompressed/home.css',
+    'public/css/uncompressed/about.css',
+    'public/css/uncompressed/products.css',
+    'public/css/uncompressed/news.css',
+    'public/css/uncompressed/media.css',],
+    'public/css/minified/app.css'
+);
+
+if (mix.inProduction()) {
+    mix.version();
+}
+
+mix.disableNotifications();

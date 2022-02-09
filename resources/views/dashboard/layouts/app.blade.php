@@ -35,7 +35,7 @@
     {{-- JSON Viewer --}}
     <link href="{{ asset('js/json-viewer/jquery.json-viewer.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/uncompressed/dashboard.css') }}">
 
 </head>
 
