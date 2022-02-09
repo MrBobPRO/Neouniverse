@@ -63,7 +63,7 @@ class MainController extends Controller
 
     public function emailFeedback(Request $request)
     {
-        Mail::to('boburjon_n@mail.ru')->send(new Feedback($request));
+        Mail::to('info@neouniverse.co.uk')->send(new Feedback($request));
 
         return redirect()->back();
     }
