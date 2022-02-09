@@ -13,3 +13,13 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+.htaccess
+/public/img/carousel/*
+/public/img/news/*
+!/public/img/news/thumbs
+/public/img/news/thumbs/*
+/public/img/products/*
+!/public/img/products/thumbs
+/public/img/products/thumbs/*
+/public/instructions/*
